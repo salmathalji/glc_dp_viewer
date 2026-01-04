@@ -1,5 +1,6 @@
 {
   "$id": "urn:gleam:schema:light-data:1",
+  "title": "Light data",
   "fields": [
     { "name": "DATE/TIME", "type": "datetime", "format": "%d/%m/%Y %H:%M:%S" },
     { "name": "MS", "type": "integer" },
