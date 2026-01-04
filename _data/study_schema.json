@@ -1,4 +1,6 @@
 {
+    "$schema": "https://frictionlessdata.io/schemas/table-schema.json",
+    "title": "Study",
     "fields": [
       {"name": "study_title", "type": "string", "description": "Title of the study", "constraints": {"required": true}},
       {"name": "study_internal_id", "type": "string", "description": "Unique identifier for study", "constraints": {"required": true}},
