@@ -17,6 +17,55 @@ layout: default
     </a>
   </p>
 
+{%- comment -%}
+Compute inbound references to this schema section (table_schema_id):
+- JSON Schema fields/properties with x-refersToSchema == table_schema_id
+- (Optional) Table Schema foreignKeys where fk.reference.resource == table_schema_id
+{%- endcomment -%}
+
+{% assign inbound_refs = "" | split: "" %}
+
+{% for other_file in site.data["_tables"] %}
+  {% assign other_schema = site.data[other_file] %}
+  {% assign other_id = other_schema.name | default: other_file %}
+
+  {%- comment -%} 1) JSON Schema-style references via x-refersToSchema {%- endcomment -%}
+  {% if other_schema.properties %}
+    {% for kv in other_schema.properties %}
+      {% assign prop_name = kv[0] %}
+      {% assign prop = kv[1] %}
+      {% if prop['x-refersToSchema'] == table_schema_id %}
+        {% assign entry = other_id | append: "|" | append: prop_name %}
+        {% assign inbound_refs = inbound_refs | push: entry %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {%- comment -%} 2) Table Schema FK references (only if you use them) {%- endcomment -%}
+  {% if other_schema.foreignKeys %}
+    {% for fk in other_schema.foreignKeys %}
+      {% if fk.reference and fk.reference.resource == table_schema_id %}
+        {% assign entry = other_id | append: "|" | append: fk.fields %}
+        {% assign inbound_refs = inbound_refs | push: entry %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% if inbound_refs.size > 0 %}
+  <p class="small text-muted">
+    Referenced by:
+    {% for ref in inbound_refs %}
+      {% assign parts = ref | split: "|" %}
+      {% assign src_schema = parts[0] %}
+      {% assign src_field = parts[1] %}
+      <a href="{{ site.baseurl }}/data/#{{ src_schema }}.{{ src_field }}">
+        <code>{{ src_schema }}</code>.<code>{{ src_field }}</code>
+      </a>{% if forloop.last == false %}, {% endif %}
+    {% endfor %}
+  </p>
+{% endif %}
+
   {{ table_schema.description | markdownify }}
 
   {% if table_schema.fields %}
