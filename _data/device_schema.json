@@ -33,7 +33,8 @@
     "device_datasheet_id": {
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9._-]*(-v[0-9]+(\\.[0-9]+)*)?$",
-      "description": "Reference to the general device specifications. Datasheet ID (slug). Version suffix optional; e.g., lumitech-lt100-v1.0"
+      "description": "Reference to the general device specifications. Datasheet ID (slug). Version suffix optional; e.g., lumitech-lt100-v1.0",
+      "x-refersToSchema": "device_datasheet_schema"
     },
     "device_sensors": {
       "type": "array",
