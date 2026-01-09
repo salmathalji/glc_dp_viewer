@@ -36,7 +36,7 @@
     {
       "fields": "participant_internal_id",
       "reference": {
-        "resource": "participants",
+        "resource": "participant_schema",
         "fields": "participant_internal_id"
       }
     }
