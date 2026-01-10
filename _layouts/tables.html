@@ -69,6 +69,20 @@ layout: default
     user-select: none;
     margin-top: 0.25rem;
   }
+
+  /* Ensure nested Definition column never collapses too narrowly */
+.schema-nested-row {
+  grid-template-columns: 260px minmax(420px, 1fr) 90px;
+}
+
+/* Prevent per-letter word breaking in nested definitions */
+.schema-nested-def,
+.schema-nested-def p,
+.schema-nested-def li {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: manual !important;
+}
 </style>
 
 {{ content }}
