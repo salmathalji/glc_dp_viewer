@@ -1,19 +1,13 @@
 {% assign prefix = include.prefix | default: include.schema_id %}
+{% assign mode = include.mode | default: "table" %}
 
-<table class="{% if include.prefix %}schema-nested-table{% else %}schema-root-table{% endif %}">
-  <colgroup>
-    <col width="30%">
-    <col width="60%">
-    <col width="10%">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Definition</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
+{% comment %}
+MODE = "table"  -> render a 3-col table (top-level)
+MODE = "nested" -> render a lightweight grid/list (nested props) to avoid table-in-table misalignment
+{% endcomment %}
+
+{% if mode == "nested" %}
+  <div class="schema-nested">
     {% for kv in include.properties %}
       {% assign name = kv[0] %}
       {% assign field = kv[1] %}
@@ -26,82 +20,175 @@
         {% endfor %}
       {% endif %}
 
-      <tr class="text-break">
-        <td id="{{ field_anchor }}">
-          <a href="#{{ field_anchor }}"><code>{{ name }}</code></a>
-          {% if is_required %}*{% endif %}
-        </td>
-        <td>
+      <div class="schema-nested-row" id="{{ field_anchor }}">
+        <div class="schema-nested-name">
+          <a href="#{{ field_anchor }}"><code>{{ name }}</code></a>{% if is_required %}*{% endif %}
+        </div>
+
+        <div class="schema-nested-def">
           {{ field.description | markdownify }}
 
           {% if field.enum %}
-            <p><strong>Enum</strong>: <code>{{ field.enum | join: ", " }}</code></p>
+            <div class="small"><strong>Enum</strong>: <code>{{ field.enum | join: ", " }}</code></div>
           {% endif %}
           {% if field.pattern %}
-            <p><strong>Pattern</strong>: <code>{{ field.pattern }}</code></p>
+            <div class="small"><strong>Pattern</strong>: <code>{{ field.pattern }}</code></div>
           {% endif %}
           {% if field.minimum %}
-            <p><strong>Minimum</strong>: <code>{{ field.minimum }}</code></p>
+            <div class="small"><strong>Minimum</strong>: <code>{{ field.minimum }}</code></div>
           {% endif %}
           {% if field.maximum %}
-            <p><strong>Maximum</strong>: <code>{{ field.maximum }}</code></p>
+            <div class="small"><strong>Maximum</strong>: <code>{{ field.maximum }}</code></div>
           {% endif %}
 
           {% if field['x-refersToSchema'] %}
             {% assign target_key = field['x-refersToSchema'] %}
             {% assign target_schema = site.data[target_key] %}
-
-            <p class="small text-muted">
+            <div class="small text-muted">
               References schema:
               <a href="{{ site.baseurl }}/data/#{{ target_key }}">
                 <code>{{ target_schema.title | default: target_key }}</code>
               </a>
-            </p>
+            </div>
           {% endif %}
 
-          {%- comment -%} Recursively render nested object properties {%- endcomment -%}
           {% if field.type == "object" and field.properties %}
-            <details class="mt-2 ms-3 schema-details">
+            <details class="schema-details">
               <summary class="small text-muted">
                 Properties ({{ field.properties | size }})
               </summary>
-          
-              <div class="mt-2">
+              {% include jsonschema_properties.html
+                 properties=field.properties
+                 required=field.required
+                 schema_id=include.schema_id
+                 prefix=field_anchor
+                 mode="nested" %}
+            </details>
+          {% endif %}
+
+          {% if field.type == "array" and field.items and field.items.type == "object" and field.items.properties %}
+            {% assign item_prefix = field_anchor | append: "[]" %}
+            <details class="schema-details">
+              <summary class="small text-muted">
+                Item properties ({{ field.items.properties | size }})
+              </summary>
+              {% include jsonschema_properties.html
+                 properties=field.items.properties
+                 required=field.items.required
+                 schema_id=include.schema_id
+                 prefix=item_prefix
+                 mode="nested" %}
+            </details>
+          {% endif %}
+
+        </div>
+
+        <div class="schema-nested-type">
+          <span class="badge bg-secondary">{{ field.type | default: "object" }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+{% else %}
+  <table>
+    <colgroup>
+      <col width="25%">
+      <col width="65%">
+      <col width="10%">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Definition</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for kv in include.properties %}
+        {% assign name = kv[0] %}
+        {% assign field = kv[1] %}
+        {% assign field_anchor = prefix | append: "." | append: name %}
+
+        {% assign is_required = false %}
+        {% if include.required %}
+          {% for r in include.required %}
+            {% if r == name %}{% assign is_required = true %}{% endif %}
+          {% endfor %}
+        {% endif %}
+
+        <tr class="text-break">
+          <td id="{{ field_anchor }}">
+            <a href="#{{ field_anchor }}"><code>{{ name }}</code></a>
+            {% if is_required %}*{% endif %}
+          </td>
+
+          <td>
+            {{ field.description | markdownify }}
+
+            {% if field.enum %}
+              <p><strong>Enum</strong>: <code>{{ field.enum | join: ", " }}</code></p>
+            {% endif %}
+            {% if field.pattern %}
+              <p><strong>Pattern</strong>: <code>{{ field.pattern }}</code></p>
+            {% endif %}
+            {% if field.minimum %}
+              <p><strong>Minimum</strong>: <code>{{ field.minimum }}</code></p>
+            {% endif %}
+            {% if field.maximum %}
+              <p><strong>Maximum</strong>: <code>{{ field.maximum }}</code></p>
+            {% endif %}
+
+            {% if field['x-refersToSchema'] %}
+              {% assign target_key = field['x-refersToSchema'] %}
+              {% assign target_schema = site.data[target_key] %}
+              <p class="small text-muted">
+                References schema:
+                <a href="{{ site.baseurl }}/data/#{{ target_key }}">
+                  <code>{{ target_schema.title | default: target_key }}</code>
+                </a>
+              </p>
+            {% endif %}
+
+            {% if field.type == "object" and field.properties %}
+              <details class="schema-details">
+                <summary class="small text-muted">
+                  Properties ({{ field.properties | size }})
+                </summary>
                 {% include jsonschema_properties.html
                    properties=field.properties
                    required=field.required
                    schema_id=include.schema_id
-                   prefix=field_anchor %}
-              </div>
-            </details>
-          {% endif %}
+                   prefix=field_anchor
+                   mode="nested" %}
+              </details>
+            {% endif %}
 
-          {%- comment -%} Recursively render array-of-object item properties {%- endcomment -%}
-          {% if field.type == "array" and field.items and field.items.type == "object" and field.items.properties %}
-            {% assign item_prefix = field_anchor | append: "[]" %}
-            <details class="mt-2 ms-3 schema-details">
-              <summary class="small text-muted">
-                Item properties ({{ field.items.properties | size }})
-              </summary>
-          
-              <div class="mt-2">
+            {% if field.type == "array" and field.items and field.items.type == "object" and field.items.properties %}
+              {% assign item_prefix = field_anchor | append: "[]" %}
+              <details class="schema-details">
+                <summary class="small text-muted">
+                  Item properties ({{ field.items.properties | size }})
+                </summary>
                 {% include jsonschema_properties.html
                    properties=field.items.properties
                    required=field.items.required
                    schema_id=include.schema_id
-                   prefix=item_prefix %}
-              </div>
-            </details>
-          {% endif %}
-        </td>
-        <td>
-          <span class="badge bg-secondary">{{ field.type | default: "object" }}</span>
-        </td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
+                   prefix=item_prefix
+                   mode="nested" %}
+              </details>
+            {% endif %}
+          </td>
 
-{% if include.prefix == nil %}
-<p class="small">Fields marked with * are required.</p>
+          <td>
+            <span class="badge bg-secondary">{{ field.type | default: "object" }}</span>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if include.prefix == nil %}
+    <p class="small">Fields marked with * are required.</p>
+  {% endif %}
 {% endif %}
