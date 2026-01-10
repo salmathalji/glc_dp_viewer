@@ -1,6 +1,6 @@
 {% assign prefix = include.prefix | default: include.schema_id %}
 
-<table>
+<table class="{% if include.prefix %}schema-nested-table{% else %}schema-root-table{% endif %}">
   <colgroup>
     <col width="25%">
     <col width="65%">
