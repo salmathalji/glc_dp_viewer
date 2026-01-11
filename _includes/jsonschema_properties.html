@@ -52,6 +52,16 @@
             </p>
           {% endif %}
 
+          {% if field['x-refersToField'] %}
+            {% assign ref = field['x-refersToField'] | split: "." %}
+            <p class="small text-muted">
+              References:
+              <a href="{{ site.baseurl }}/data/#{{ ref[0] }}.{{ ref[1] }}">
+                <code>{{ ref[0] }}</code>.<code>{{ ref[1] }}</code>
+              </a>
+            </p>
+          {% endif %}
+
           {% if field.type == "object" and field.properties %}
             <details class="schema-details">
               <summary class="small text-muted">
@@ -147,6 +157,16 @@
                 References schema:
                 <a href="{{ site.baseurl }}/data/#{{ target_key }}">
                   <code>{{ target_schema.title | default: target_key }}</code>
+                </a>
+              </p>
+            {% endif %}
+
+            {% if field['x-refersToField'] %}
+              {% assign ref = field['x-refersToField'] | split: "." %}
+              <p class="small text-muted">
+                References:
+                <a href="{{ site.baseurl }}/data/#{{ ref[0] }}.{{ ref[1] }}">
+                  <code>{{ ref[0] }}</code>.<code>{{ ref[1] }}</code>
                 </a>
               </p>
             {% endif %}
