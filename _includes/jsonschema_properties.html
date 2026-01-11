@@ -22,7 +22,7 @@
 
       <div class="schema-nested-row" id="{{ field_anchor }}">
         <div class="schema-nested-name">
-          <a href="#{{ field_anchor }}"><code>{{ name }}</code></a>{% if is_required %}*{% endif %}
+          <a href="#{{ field_anchor }}"><code title="{{ name }}">{{ name }}</code></a>{% if is_required %}*{% endif %}
         </div>
 
         <div class="schema-nested-def">
@@ -121,7 +121,7 @@
 
         <tr class="text-break" id="{{ field_anchor }}">
           <td>
-            <a href="#{{ field_anchor }}"><code>{{ name }}</code></a>
+            <a href="#{{ field_anchor }}"><code title="{{ name }}">{{ name }}</code></a>
             {% if is_required %}*{% endif %}
           </td>
           <td>
