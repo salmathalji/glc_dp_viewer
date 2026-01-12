@@ -1,6 +1,6 @@
 ---
 layout: profile
-title: Metadata
+title: Data Package
 permalink: /metadata/
 toc: true
 ---
