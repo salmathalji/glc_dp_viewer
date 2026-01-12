@@ -1,6 +1,6 @@
 ---
 layout: tables
-title: Data
+title: Schemas
 permalink: /data/
 toc: true
 ---
