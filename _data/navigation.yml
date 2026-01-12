@@ -2,9 +2,9 @@
 
 - text: Home
   href: /
-- text: Metadata
+- text: Data Package
   href: /metadata/
-- text: Data
+- text: Schemas
   href: /data/
 - text: Example dataset
   menu:
