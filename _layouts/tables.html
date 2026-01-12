@@ -204,6 +204,20 @@ Compute inbound references to this schema section (table_schema_id):
                 {% endif %}
               {% endfor %}
             {% endif %}
+
+              {% assign field_key = table_schema_id | append: "." | append: field.name %}
+              {% assign inbound_refs = site.data.xref_index[field_key] %}
+              
+              {% if inbound_refs %}
+                <p class="small text-muted">
+                  Referenced by:
+                  {% for ref in inbound_refs %}
+                    <a href="{{ site.baseurl }}/data/#{{ ref.schema }}.{{ ref.field }}">
+                      <code>{{ ref.schema }}</code>.<code>{{ ref.field }}</code>
+                    </a>{% if forloop.last == false %}, {% endif %}
+                  {% endfor %}
+                </p>
+              {% endif %}
             </td>
             <td><span class="badge bg-secondary">{{ field.type }}</span></td>
           </tr>
