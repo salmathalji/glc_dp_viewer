@@ -62,6 +62,20 @@
             </p>
           {% endif %}
 
+          {% assign field_key = include.schema_id | append: "." | append: name %}
+          {% assign inbound_refs = site.data.xref_index[field_key] %}
+          
+          {% if inbound_refs %}
+            <p class="small text-muted">
+              Referenced by:
+              {% for ref in inbound_refs %}
+                <a href="{{ site.baseurl }}/data/#{{ ref.schema }}.{{ ref.field }}">
+                  <code>{{ ref.schema }}</code>.<code>{{ ref.field }}</code>
+                </a>{% if forloop.last == false %}, {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+
           {% if field.type == "object" and field.properties %}
             <details class="schema-details">
               <summary class="small text-muted">
@@ -168,6 +182,20 @@
                 <a href="{{ site.baseurl }}/data/#{{ ref[0] }}.{{ ref[1] }}">
                   <code>{{ ref[0] }}</code>.<code>{{ ref[1] }}</code>
                 </a>
+              </p>
+            {% endif %}
+
+            {% assign field_key = include.schema_id | append: "." | append: name %}
+            {% assign inbound_refs = site.data.xref_index[field_key] %}
+            
+            {% if inbound_refs %}
+              <p class="small text-muted">
+                Referenced by:
+                {% for ref in inbound_refs %}
+                  <a href="{{ site.baseurl }}/data/#{{ ref.schema }}.{{ ref.field }}">
+                    <code>{{ ref.schema }}</code>.<code>{{ ref.field }}</code>
+                  </a>{% if forloop.last == false %}, {% endif %}
+                {% endfor %}
               </p>
             {% endif %}
 
