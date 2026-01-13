@@ -6,19 +6,6 @@
   href: /metadata/
 - text: Schemas
   href: /data/
-- text: Example dataset
-  menu:
-  - text: Example dataset
-    href: /example/
-  - text: "---"
-  - text: Deployment 1
-    href: /example/00a2c20d/
-  - text: Deployment 2
-    href: /example/29b7d356/
-  - text: Deployment 3
-    href: /example/577b543a/
-  - text: Deployment 4
-    href: /example/62c200a9/
 - text: GitHub
-  href: https://github.com/salmathalji/GLEAM-dp-metadata
+  href: https://github.com/salmathalji/glc_dp_viewer
 
