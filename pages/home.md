@@ -35,30 +35,63 @@ To allow validation, the `datapackage.json` of your dataset should reference the
 
 ```json
 {
-   "name": "...",
-   "profile": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/gleam-dp-profile.json",
-   "resources": [
-      {
-         "name": "study",
-         "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/study.schema.json"
-      },
-      {
-         "name": "participant",
-         "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/participant.schema.json"
-      },
-      {
-         "name": "device",
-         "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/device.schema.json"
-      },
-      {
-         "name": "dataset",
-         "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/dataset.schema.json"
-      },
-      {
-         "name": "data",
-         "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/data.table.schema.json"
-      }
-   ]
+  "name": "gleam-dataset",
+  "profile": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/gleam-dp-profile.json",
+  "resources": [
+    {
+      "name": "study",
+      "path": "data/study.json",
+      "profile": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/json-entity-resource.json",
+      "mediatype": "application/json",
+      "jsonSchema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/study.schema.json"
+    },
+    {
+      "name": "participants",
+      "path": "data/participants.json",
+      "profile": "tabular-data-resource",
+      "format": "json",
+      "mediatype": "application/json",
+      "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/participants.schema.json"
+    },
+    {
+      "name": "participant_characteristics",
+      "path": "data/participant_characteristics.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/participant_characteristics.schema.json"
+    },
+    {
+      "name": "datasets",
+      "path": "data/datasets.json",
+      "profile": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/json-entity-resource.json",
+      "mediatype": "application/json",
+      "jsonSchema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/dataset.schema.json"
+    },
+    {
+      "name": "devices",
+      "path": "data/devices.json",
+      "profile": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/json-entity-resource.json",
+      "mediatype": "application/json",
+      "jsonSchema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/device.schema.json"
+    },
+    {
+      "name": "device_datasheets",
+      "path": "data/datasheets/",
+      "profile": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/json-entity-resource.json",
+      "mediatype": "application/json",
+      "jsonSchema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/device_datasheet.schema.json"
+    },
+    {
+      "name": "light_data",
+      "path": "data/light_data.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "dialect": { "delimiter": ";", "decimalChar": "." },
+      "schema": "https://raw.githubusercontent.com/tscnlab/GLEAM-dp/<version>/schemas/light_data.schema.json"
+    }
+  ]
 }
 ```
 
