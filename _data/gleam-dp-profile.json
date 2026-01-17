@@ -29,16 +29,15 @@
         },
         "resources": {
           "type": "array",
-          "description": "Frictionless resources required in the GLEAM data package. Must contain study, participants, datasets, devices, and participant_characteristics.",
-          "minItems": 6,
+          "description": "Frictionless resources required in the GLEAM data package. Must contain study, participants, datasets, devices, and device datasheets.",
+          "minItems": 5,
           "items": {
             "type": "object",
             "required": ["name", "path", "profile"],
             "properties": {
               "name": {
                 "type": "string",
-                "description": "Name of the resource. Must match one of the required GLEAM resource names.",
-                "enum": ["study", "participants", "datasets", "devices", "participant_characteristics", "light_data"]
+                "description": "Name of the resource. The profile enforces the presence of a defined set of core resources, but allows any number of additional resources with arbitrary names."
               },
               "path": {
                 "type": "string",
@@ -101,8 +100,7 @@
             { "contains": { "properties": { "name": { "const": "participants" } } } },
             { "contains": { "properties": { "name": { "const": "datasets" } } } },
             { "contains": { "properties": { "name": { "const": "devices" } } } },
-            { "contains": { "properties": { "name": { "const": "participant_characteristics" } } } },
-            { "contains": { "properties": { "name": { "const": "light_data" } } } }
+            { "contains": { "properties": { "name": { "const": "device_datasheets" } } } }
           ]
         }
       }
