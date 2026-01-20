@@ -1,75 +1,80 @@
 {
-  "profile": "gleam-dp-profile.json",
-  "name": "light-study",
-  "title": "Effects of Light on Sleep",
-  "description": "Study metadata for GLEE protocol examining light exposure and sleep.",
+  "name": "gleam-dataset",
+  "title": "GLEAM Dataset",
+  "description": "Data package for light exposure studies using the GLEAM metadata profile.",
+  "created": "2025-05-13T12:00:00Z",
+  "profile": "schemas/gleam-dp-profile.json",
   "contributors": [
     {
-      "title": "Dr. Zeta",
-      "email": "zeta@example.edu",
-      "role": "Principal Investigator",
-      "affiliation": "GLEE Lab"
+      "title": "GLEE Consortium",
+      "role": "publisher",
+      "path": "https://visualdiet.org"
     },
     {
-      "title": "Alex Analyst",
-      "email": "alex@example.edu",
-      "role": "Data Scientist",
-      "affiliation": "GLEE Lab"
+      "title": "Manuel Spitschan",
+      "email": "manuel.spitschan@tum.de",
+      "role": "principalInvestigator",
+      "path": "https://orcid.org/0000-0002-8572-9268"
     }
   ],
-  "study": {
-    "study_internal_id": "LUX-GLEE-2025",
-    "study_title": "Effects of Light on Sleep",
-    "study_short_description": "A short-term intervention study measuring sleep metrics under different lighting conditions.",
-    "study_sample": "Healthy adults aged 18\u201335, N=20",
-    "study_setting": "Sleep lab environment",
-    "study_geographical_location": "Urban US",
-    "study_type": "Crossover randomized trial",
-    "study_funding_sources": [
-      "NIH R01-45678",
-      "Sleep Science Institute"
-    ],
-    "study_keywords": [
-      "circadian",
-      "light",
-      "sleep",
-      "melatonin"
-    ],
-    "study_datasets": [
-      "sleep_data",
-      "participant",
-      "dataset",
-      "device"
-    ]
-  },
+  "homepage": "https://visualdiet.org",
   "resources": [
     {
-      "name": "sleep_data",
-      "path": "sleep_data.json",
-      "format": "json",
+      "name": "study",
+      "path": "data/study.json",
+      "profile": "schemas/json-entity-resource.json",
       "mediatype": "application/json",
-      "schema": "schemas/sleep_data.schema.json"
+      "jsonSchema": "schemas/study.schema.json"
     },
     {
-      "name": "participant",
-      "path": "participant.json",
-      "format": "json",
+      "name": "participants",
+      "path": "data/participants.json",
+      "profile": "tabular-data-resource",
       "mediatype": "application/json",
-      "schema": "schemas/participant.schema.json"
+      "format": "json",
+      "schema": "schemas/participants.schema.json"
+    },
+
+    {
+      "name": "participant_characteristics",
+      "path": "data/participant_characteristics.csv",
+      "profile": "tabular-data-resource",
+      "mediatype": "text/csv",
+      "format": "csv",
+      "schema": "schemas/participant_characteristics.schema.json"
+    },
+
+    {
+      "name": "datasets",
+      "path": "data/datasets.json",
+      "profile": "schemas/json-entity-resource.json",
+      "mediatype": "application/json",
+      "jsonSchema": "schemas/dataset.schema.json"
     },
     {
-      "name": "dataset",
-      "path": "dataset.json",
-      "format": "json",
+      "name": "devices",
+      "path": "data/devices.json",
+      "profile": "schemas/json-entity-resource.json",
       "mediatype": "application/json",
-      "schema": "schemas/dataset.schema.json"
+      "jsonSchema": "schemas/device.schema.json"
     },
+
     {
-      "name": "device",
-      "path": "device.json",
-      "format": "json",
+      "name": "device_datasheets",
+      "path": "data/datasheets/",
+      "profile": "schemas/json-entity-resource.json",
       "mediatype": "application/json",
-      "schema": "schemas/device.schema.json"
+      "jsonSchema": "schemas/device_datasheet.schema.json"
+    },
+
+    {
+      "name": "light_data",
+      "path": "data/light_data.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "dialect": { "delimiter": ";", "decimalChar": "." },
+      "schema": "schemas/light_data.schema.json"
     }
   ]
 }
