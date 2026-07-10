@@ -4,6 +4,7 @@ title: GLC Registry
 permalink: /registry/
 ---
 
+<div class="registry-page">
 <h1>GLC Registry</h1>
 
 <p class="small">
@@ -12,8 +13,16 @@ permalink: /registry/
 </p>
 
 <div id="app" class="small">Loading…</div>
+</div>
 
 <style>
+  .registry-page {
+    position: relative;
+    left: 50%;
+    width: min(1400px, calc(100vw - 48px));
+    max-width: none;
+    transform: translateX(-50%);
+  }
   table { width: 100%; border-collapse: collapse; table-layout: auto; }
   th, td { padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.08); vertical-align: top; }
   th { text-align: left; font-weight: 700; }
@@ -27,29 +36,22 @@ permalink: /registry/
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .repo-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .repo-actions > a:first-child {
-    min-width: 0;
-  }
+  th.llw-col, td.llw-col { width: 130px; text-align: center; vertical-align: middle; }
   .llw-button {
     display: inline-block;
-    flex: 0 0 auto;
     padding: 5px 10px;
     border-radius: 4px;
-    background: #0969da;
-    color: #fff;
+    border: 1px solid #a7d7b8;
+    background: #e7f7ef;
+    color: #137a3a;
     font-weight: 700;
     line-height: 1.2;
     text-decoration: none;
     white-space: nowrap;
   }
   .llw-button:hover, .llw-button:focus {
-    background: #0757b5;
-    color: #fff;
+    background: #d4f0e1;
+    color: #0f6330;
   }
   th.when-col { width: 240px; }
   td.when-col code { white-space: nowrap; }
@@ -76,7 +78,10 @@ permalink: /registry/
   .unknown { background:#f2f2f2; color:#555; }
 
   .muted { opacity: 0.75; }
-  .reports a { white-space: nowrap; }
+
+  @media (max-width: 600px) {
+    .registry-page { width: calc(100vw - 24px); }
+  }
 </style>
 
 <script>
@@ -129,7 +134,7 @@ permalink: /registry/
             <th>Status</th>
             <th>Commit</th>
             <th class="when-col">Validated at</th>
-            <th class="reports">Reports</th>
+            <th class="llw-col">LightLogWeb</th>
           </tr>
         </thead>
         <tbody>
@@ -153,18 +158,12 @@ permalink: /registry/
             const lpWhen = lp && lp.timestamp_utc ? fmtUtc(lp.timestamp_utc) : "";
             const curWhen = cur && cur.timestamp_utc ? fmtUtc(cur.timestamp_utc) : "";
 
-            const latestPassUrl = d.latest_pass_url || "";
-            const currentUrl = d.current_url || "";
-
             // If there is no latest_pass (shouldn't happen if you're enforcing membership),
             // still render both rows as unknown rather than breaking.
             return `
                 <tr class="group-start">
                     <td class="repo-col" rowspan="2">
-                    <div class="repo-actions">
-                      <a href="${repoUrl}"><code>${repo}</code></a>
-                      ${llwUrl ? `<a class="llw-button" href="${llwUrl}" target="_blank" rel="noopener noreferrer">Send to LLW</a>` : ""}
-                    </div>
+                    <a href="${repoUrl}"><code>${repo}</code></a>
                     </td>
 
                     <td><span class="rowtag">Latest pass</span></td>
@@ -179,8 +178,8 @@ permalink: /registry/
                     ${lpWhen ? `<code>${lpWhen}</code>` : `<span class="muted">—</span>`}
                     </td>
 
-                    <td class="reports">
-                    ${latestPassUrl ? `<a href="${latestPassUrl}">latest_pass.json</a>` : `<span class="muted">—</span>`}
+                    <td class="llw-col" rowspan="2">
+                    ${llwUrl ? `<a class="llw-button" href="${llwUrl}" target="_blank" rel="noopener noreferrer">Send to LLW</a>` : `<span class="muted">—</span>`}
                     </td>
                 </tr>
 
@@ -197,9 +196,6 @@ permalink: /registry/
                     ${curWhen ? `<code>${curWhen}</code>` : `<span class="muted">—</span>`}
                     </td>
 
-                    <td class="reports">
-                    ${currentUrl ? `<a href="${currentUrl}">validation.json</a>` : `<span class="muted">—</span>`}
-                    </td>
                 </tr>
                 `;
           }).join("")}
