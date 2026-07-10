@@ -27,6 +27,30 @@ permalink: /registry/
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .repo-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .repo-actions > a:first-child {
+    min-width: 0;
+  }
+  .llw-button {
+    display: inline-block;
+    flex: 0 0 auto;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #0969da;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .llw-button:hover, .llw-button:focus {
+    background: #0757b5;
+    color: #fff;
+  }
   th.when-col { width: 240px; }
   td.when-col code { white-space: nowrap; }
 
@@ -58,6 +82,12 @@ permalink: /registry/
 <script>
 (function () {
   const REGISTRY_URL = "https://tscnlab.github.io/glc-registry/registry.json";
+  const LIGHTLOGWEB_URL = "https://tscnlab-lightlogweb.share.connect.posit.cloud";
+
+  function lightLogWebUrl(repo) {
+    const datasetId = String(repo).replace(/\//g, "_");
+    return `${LIGHTLOGWEB_URL}?dataset=${encodeURIComponent(datasetId)}`;
+  }
 
   function pill(status) {
     const s = (status || "unknown").toLowerCase();
@@ -106,6 +136,7 @@ permalink: /registry/
           ${rows.map((d, idx) => {
             const repo = d.repo || d.id || "";
             const repoUrl = d.repo ? `https://github.com/${d.repo}` : "#";
+            const llwUrl = repo ? lightLogWebUrl(repo) : "";
 
             const lp = d.latest_pass || null;   // latest passing snapshot
             const cur = d.current || null;      // most recent run
@@ -130,7 +161,10 @@ permalink: /registry/
             return `
                 <tr class="group-start">
                     <td class="repo-col" rowspan="2">
-                    <a href="${repoUrl}"><code>${repo}</code></a>
+                    <div class="repo-actions">
+                      <a href="${repoUrl}"><code>${repo}</code></a>
+                      ${llwUrl ? `<a class="llw-button" href="${llwUrl}" target="_blank" rel="noopener noreferrer">Send to LLW</a>` : ""}
+                    </div>
                     </td>
 
                     <td><span class="rowtag">Latest pass</span></td>
