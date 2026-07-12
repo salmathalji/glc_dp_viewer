@@ -77,6 +77,8 @@ permalink: /registry/
   .pass { background:#e7f7ef; color:#137a3a; }
   .fail { background:#fdecec; color:#b42318; }
   .unknown { background:#f2f2f2; color:#555; }
+  .unavailable { background:#fff1d6; color:#8a5700; }
+  .rename-warning { display:block; margin-top:6px; color:#8a5700; }
 
   .muted { opacity: 0.75; }
 
@@ -97,8 +99,19 @@ permalink: /registry/
 
   function pill(status) {
     const s = (status || "unknown").toLowerCase();
-    const cls = s === "pass" ? "pass" : s === "fail" ? "fail" : "unknown";
+    const cls = s === "pass" ? "pass" : s === "fail" ? "fail" : s === "repository unavailable" ? "unavailable" : "unknown";
     return `<span class="pill ${cls}">${s}</span>`;
+  }
+
+  function repositoryUnavailable(dataset) {
+    if (dataset.repository_status) {
+      return dataset.repository_status === "unavailable";
+    }
+    const errors = dataset.fetch_errors || [];
+    return errors.some(entry => {
+      const message = typeof entry === "string" ? entry : entry && entry.error;
+      return /(?:\b404\b|not found)/i.test(message || "");
+    });
   }
 
   function fmtUtc(ts) {
@@ -141,14 +154,17 @@ permalink: /registry/
         <tbody>
           ${rows.map((d, idx) => {
             const repo = d.repo || d.id || "";
+            const configuredRepo = d.configured_repo || repo;
+            const repoRenamed = d.repository_status === "renamed" && configuredRepo !== repo;
             const repoUrl = d.repo ? `https://github.com/${d.repo}` : "#";
             const llwUrl = repo ? lightLogWebUrl(repo) : "";
+            const repoUnavailable = repositoryUnavailable(d);
 
             const lp = d.latest_pass || null;   // latest passing snapshot
             const cur = d.current || null;      // most recent run
 
-            const lpStatus = lp && lp.status ? lp.status : "unknown";
-            const curStatus = cur && cur.status ? cur.status : "unknown";
+            const lpStatus = repoUnavailable ? "repository unavailable" : (lp && lp.status ? lp.status : "unknown");
+            const curStatus = repoUnavailable ? "repository unavailable" : (cur && cur.status ? cur.status : "unknown");
 
             const lpSha = lp && lp.commit_sha ? lp.commit_sha : "";
             const curSha = cur && cur.commit_sha ? cur.commit_sha : "";
@@ -165,6 +181,7 @@ permalink: /registry/
                 <tr class="group-start">
                     <td class="repo-col" rowspan="2">
                     <a href="${repoUrl}"><code>${repo}</code></a>
+                    ${repoRenamed ? `<span class="rename-warning"><b>Repository renamed</b><br><code>${configuredRepo}</code> → <code>${repo}</code><br>Registry update pending</span>` : ""}
                     </td>
 
                     <td><span class="rowtag">Latest pass</span></td>
@@ -180,7 +197,7 @@ permalink: /registry/
                     </td>
 
                     <td class="llw-col" rowspan="2">
-                    ${llwUrl ? `<a class="llw-button" href="${llwUrl}" target="_blank" rel="noopener noreferrer">Send to LLW</a>` : `<span class="muted">—</span>`}
+                    ${llwUrl && !repoUnavailable ? `<a class="llw-button" href="${llwUrl}" target="_blank" rel="noopener noreferrer">Send to LLW</a>` : `<span class="muted">Unavailable</span>`}
                     </td>
                 </tr>
 
@@ -205,6 +222,7 @@ permalink: /registry/
 
       <p class="small" style="margin-top:12px;">
         Missing a dataset? Add it to <code>datasets.yml</code> in the registry repo and wait for the next scheduled run.
+        Unavailable repositories must be removed from <code>datasets.yml</code> manually.
       </p>
     `;
 
