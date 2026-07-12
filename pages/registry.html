@@ -114,6 +114,14 @@ permalink: /registry/
     });
   }
 
+  function validationNeedsRerun(dataset) {
+    const errors = dataset.fetch_errors || [];
+    return errors.some(entry => {
+      const message = typeof entry === "string" ? entry : entry && entry.error;
+      return /SourceRepositoryURI|report repo .* does not match/i.test(message || "");
+    });
+  }
+
   function fmtUtc(ts) {
     if (!ts) return "";
     return ts
@@ -159,6 +167,7 @@ permalink: /registry/
             const repoUrl = d.repo ? `https://github.com/${d.repo}` : "#";
             const llwUrl = repo ? lightLogWebUrl(repo) : "";
             const repoUnavailable = repositoryUnavailable(d);
+            const needsValidationRerun = validationNeedsRerun(d);
 
             const lp = d.latest_pass || null;   // latest passing snapshot
             const cur = d.current || null;      // most recent run
@@ -181,7 +190,8 @@ permalink: /registry/
                 <tr class="group-start">
                     <td class="repo-col" rowspan="2">
                     <a href="${repoUrl}"><code>${repo}</code></a>
-                    ${repoRenamed ? `<span class="rename-warning"><b>Repository renamed</b><br><code>${configuredRepo}</code> → <code>${repo}</code><br>Registry update pending</span>` : ""}
+                    ${repoRenamed ? `<span class="rename-warning"><b>Repository renamed</b><br><code>${configuredRepo}</code> → <code>${repo}</code><br>Registry update pending.<br>Rerun the dataset validation workflow to refresh its trusted validation status.</span>` : ""}
+                    ${!repoRenamed && needsValidationRerun ? `<span class="rename-warning"><b>Validation refresh required</b><br>Rerun the dataset validation workflow after the repository rename.</span>` : ""}
                     </td>
 
                     <td><span class="rowtag">Latest pass</span></td>
