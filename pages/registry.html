@@ -99,8 +99,7 @@ permalink: /registry/
   const LIGHTLOGWEB_URL = "https://tscnlab-lightlogweb.share.connect.posit.cloud";
 
   function lightLogWebUrl(repo) {
-    const datasetId = String(repo).replace(/\//g, "_");
-    return `${LIGHTLOGWEB_URL}?dataset=${encodeURIComponent(datasetId)}`;
+    return `${LIGHTLOGWEB_URL}?repo=${encodeURIComponent(String(repo))}`;
   }
 
   function pill(status) {
