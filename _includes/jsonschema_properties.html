@@ -28,17 +28,12 @@
         <div class="schema-nested-def">
           {{ field.description | markdownify }}
 
-          {% if field.enum %}
-            <p><strong>Enum</strong>: <code>{{ field.enum | join: ", " }}</code></p>
-          {% endif %}
-          {% if field.pattern %}
-            <p><strong>Pattern</strong>: <code>{{ field.pattern }}</code></p>
-          {% endif %}
-          {% if field.minimum %}
-            <p><strong>Minimum</strong>: <code>{{ field.minimum }}</code></p>
-          {% endif %}
-          {% if field.maximum %}
-            <p><strong>Maximum</strong>: <code>{{ field.maximum }}</code></p>
+          {% include schema_constraints.html field=field %}
+          {% if field.examples and field.examples.size > 0 %}
+            <p class="schema-example">
+              <strong>Example</strong>:
+              <code>{{ field.examples.first | jsonify }}</code>
+            </p>
           {% endif %}
 
           {% if field['x-refersToSchema'] %}
@@ -76,7 +71,7 @@
             </p>
           {% endif %}
 
-          {% if field.type == "object" and field.properties %}
+          {% if field.type contains "object" and field.properties %}
             <details class="schema-details">
               <summary class="small text-muted">
                 Properties ({{ field.properties | size }})
@@ -90,7 +85,7 @@
             </details>
           {% endif %}
 
-          {% if field.type == "array" and field.items and field.items.type == "object" and field.items.properties %}
+          {% if field.type contains "array" and field.items and field.items.type contains "object" and field.items.properties %}
             {% assign item_prefix = field_anchor | append: "[]" %}
             <details class="schema-details">
               <summary class="small text-muted">
@@ -108,7 +103,9 @@
         </div>
 
         <div class="schema-nested-type">
-          <span class="badge bg-secondary">{{ field.type | default: "object" }}</span>
+          <span class="badge bg-secondary">
+            {% if field.type.first %}{{ field.type | join: " or " }}{% else %}{{ field.type | default: "object" }}{% endif %}
+          </span>
         </div>
       </div>
 
@@ -151,17 +148,12 @@
           <td>
             {{ field.description | markdownify }}
 
-            {% if field.enum %}
-              <p><strong>Enum</strong>: <code>{{ field.enum | join: ", " }}</code></p>
-            {% endif %}
-            {% if field.pattern %}
-              <p><strong>Pattern</strong>: <code>{{ field.pattern }}</code></p>
-            {% endif %}
-            {% if field.minimum %}
-              <p><strong>Minimum</strong>: <code>{{ field.minimum }}</code></p>
-            {% endif %}
-            {% if field.maximum %}
-              <p><strong>Maximum</strong>: <code>{{ field.maximum }}</code></p>
+            {% include schema_constraints.html field=field %}
+            {% if field.examples and field.examples.size > 0 %}
+              <p class="schema-example">
+                <strong>Example</strong>:
+                <code>{{ field.examples.first | jsonify }}</code>
+              </p>
             {% endif %}
 
             {% if field['x-refersToSchema'] %}
@@ -199,7 +191,7 @@
               </p>
             {% endif %}
 
-            {% if field.type == "object" and field.properties %}
+            {% if field.type contains "object" and field.properties %}
               <details class="schema-details">
                 <summary class="small text-muted">
                   Properties ({{ field.properties | size }})
@@ -213,7 +205,7 @@
               </details>
             {% endif %}
 
-            {% if field.type == "array" and field.items and field.items.type == "object" and field.items.properties %}
+            {% if field.type contains "array" and field.items and field.items.type contains "object" and field.items.properties %}
               {% assign item_prefix = field_anchor | append: "[]" %}
               <details class="schema-details">
                 <summary class="small text-muted">
@@ -230,7 +222,9 @@
 
           </td>
           <td>
-            <span class="badge bg-secondary">{{ field.type | default: "object" }}</span>
+            <span class="badge bg-secondary">
+              {% if field.type.first %}{{ field.type | join: " or " }}{% else %}{{ field.type | default: "object" }}{% endif %}
+            </span>
           </td>
         </tr>
       {% endfor %}

@@ -5,10 +5,15 @@ permalink: /data/
 toc: true
 ---
 
-<!--
-Data in GLEAM DP are organized an arbatrary number of [Tabular Data Resources](https://specs.frictionlessdata.io/tabular-data-resource/). These files contain the actual time series data and time-stamped auxiliary data, and are described as `resources` in the `datapackage.json` file (see [Metadata](../metadata)). The descriptions of their tabular fields follow #the [Table Schema](https://specs.frictionlessdata.io/table-schema/) specifications and are presented below in human-readable form. Fields indicated with `*` are required (i.e. cannot be empty).
--->
+The GLC 3.0.0 schemas define the structure, constraints, and relationships of
+metadata used to describe light-exposure and optical-measurement studies.
+Tabular resources use
+[Frictionless Table Schema](https://specs.frictionlessdata.io/table-schema/);
+structured resources use JSON Schema. The tables below show required fields
+(`*`), permitted values, descriptions, and cross-resource references.
 
-The GLEAM DP schemas define the structure, constraints, and relationships of metadata and data used to describe light exposure and optical measurement studies. Schemas are expressed using [Frictionless Table Schema for tabular resources](https://specs.frictionlessdata.io/tabular-data-resource/) (e.g. study, participants, participant characteristics, light data) and JSON Schema for structured, non-tabular resources (e.g. datasets, devices, datasheets). The descriptions of their fields follow the [Table Schema](https://specs.frictionlessdata.io/table-schema/) specifications and are presented below in human-readable form. Together, they specify required fields indicated with `*`, permitted values, and cross-references between entities, enabling validation, interoperability, and consistent interpretation across datasets.
+Resources marked with `*` are required.
 
-**Legend:** `*` = required resource · **Example** = illustrative only · unmarked = optional resource
+<a class="glc-download-button" href="{{ '/assets/downloads/glc-schemas-3.0.0.zip' | relative_url }}" download>
+  Download the GLC 3.0.0 schema bundle (.zip)
+</a>

@@ -1,8 +1,14 @@
 ---
 layout: profile
-title: Data Package
+title: GLC data package standard
 permalink: /metadata/
 toc: true
 ---
 
-Metadata in GLEAM DP are expressed in a `datapackage.json` file. It follows the [Data Package](https://specs.frictionlessdata.io/data-package/#specification) specifications and includes generic **Data Package properties** and specific **GLEAM DP properties**. Properties indicated with `*` are required (i.e. cannot be empty). Additional metadata are organized as four related json resources: `study`, `participant`, `device`, and `dataset`
+GLC metadata are expressed in a `datapackage.json` descriptor and linked core
+resources. The package follows the
+[Frictionless Data Package](https://specs.frictionlessdata.io/data-package/#specification)
+specification with GLC-specific constraints. Properties marked with `*` are
+required. GLC 3.0.0 defines the core resources `study`, `participants`,
+`datasets`, `devices`, and `device_datasheets`; `participant_characteristics`
+is optional.

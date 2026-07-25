@@ -1,13 +1,14 @@
-# GLEAM DP
+# GLC Data Package Viewer
 
 [visualdiet.org](https://www.visualdiet.org)
 
-**Gathered Light Exposure and Auxiliary Measurements - Data Package** (GLEAM DP) is a community-developed data exchange format for optical radiation and visual experience data.
+Documentation and registry viewer for the **Global Light Commons (GLC)** data-package standard.
 
 ## Usage
 
-See the [documentation website](https://tscnlab.github.io/GLEAM-dp/).
+See the [documentation website](https://tscnlab.github.io/glc-dp-viewer/).
 
 ## Contribute
 
-Questions? Suggestions? Contribute to the development of GLEAM DP by watching the [repository](https://github.com/tscnlab/GLEAM-dp) and participating in [issue discussions](https://github.com/tscnlab/GLEAM-dp/issues).
+Questions and contributions are welcome in the
+[GLC data-package viewer repository](https://github.com/tscnlab/glc-dp-viewer).

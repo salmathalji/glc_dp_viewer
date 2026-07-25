@@ -1,0 +1,59 @@
+<footer class="glc-footer d-print-none">
+  <div class="container">
+    <div class="glc-footer-top">
+      <section class="glc-footer-intro">
+        <a href="https://globallightcommons.org" aria-label="Global Light Commons">
+          <img src="{{ site.logo | relative_url }}" alt="Global Light Commons">
+        </a>
+        <p>
+          The Global Light Commons initiative at the Technical University of
+          Munich studies how light affects health and well-being across cultures
+          and environments.
+        </p>
+        <div class="glc-footer-social">
+          <a href="https://github.com/tscnlab/glc-dp-viewer" aria-label="GLC on GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="mailto:{{ site.email }}" aria-label="Email the GLC team">
+            <i class="fa-regular fa-envelope"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="glc-footer-links">
+        <h2>Quick links</h2>
+        <ul>
+          <li><a href="https://globallightcommons.org">Global Light Commons initiative</a></li>
+          <li><a href="{{ '/registry/' | relative_url }}">GLC dataset registry</a></li>
+          <li><a href="https://tscnlab.github.io/LightLogR/">LightLogR</a></li>
+          <li><a href="https://tscnlab.github.io/glc-metadata-builder/">Metadata builder</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <section class="glc-affiliation">
+      <img
+        src="{{ '/assets/tscn-unit-logo.png' | relative_url }}"
+        alt="Translational Sensory and Circadian Neuroscience Unit"
+      >
+      <p>
+        GLC is a research initiative by the Translational Sensory &amp; Circadian
+        Neuroscience Unit at Technical University of Munich.
+      </p>
+    </section>
+
+    <div class="glc-footer-bottom">
+      <span>© 2026 GLC Research Initiative. All rights reserved.</span>
+      <a href="https://github.com/tscnlab/glc-dp-viewer/blob/main/LICENSE">MIT License</a>
+    </div>
+  </div>
+</footer>
+
+<script src="{{ '/assets/theme/js/anchor.min.js' | relative_url }}"></script>
+<script>
+  (function () {
+    const headings = ".content h2[id], .content h3[id], .content h4[id], .content h5[id], .content h6[id]";
+    anchors.options = { placement: "right" };
+    anchors.add(headings);
+  })();
+</script>

@@ -1,27 +1,15 @@
 cff-version: 1.2.0
-message: 'To cite "Camtrap DP" in publications use:'
+message: "If you use the GLC data-package viewer, please cite this software and the GLC metadata publication."
 type: software
 license: MIT
-title: Camera Trap Data Package (Camtrap DP)
-version: 1.0.1
+title: Global Light Commons Data Package Viewer
 authors:
-  - given-names: Peter
-    family-names: Desmet
-    email: peter.desmet@inbo.be
-    affiliation: Research Institute for Nature and Forest (INBO)
-    orcid: https://orcid.org/0000-0002-8442-8025
-  - family-names: Bubnicki
-    given-names: Jakub W.
-    email: kbubnicki@ibs.bialowieza.pl
-    affiliation: Mammal Research Institute, Polish Academy of Sciences & Open Science Conservation Fund
-    orcid: https://orcid.org/0000-0002-2064-3113
-  - name: Camtrap DP Development Team
-repository-code: https://github.com/tdwg/camtrap-dp
-url: https://camtrap-dp.tdwg.org/
-date-released: '2024-08-21'
-doi: 10.5281/zenodo.10068760
+  - name: GLC Development Team
+repository-code: https://github.com/tscnlab/glc-dp-viewer
+url: https://tscnlab.github.io/glc-dp-viewer/
 keywords:
-- camera trapping
-- data exchange format
-- standard
-- frictionlessdata
+  - light exposure
+  - optical radiation
+  - metadata
+  - data package
+  - frictionless data
