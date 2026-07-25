@@ -1,29 +1,32 @@
 # Links listed below will be included in your site's navbar (navigation at the top)
 
-- text: Home
+- text: Overview
   href: /
-- text: Data Package
-  href: /metadata/
-- text: Schemas
-  href: /data/
-- text: Metadata Builder
-  href: https://tscnlab.github.io/glc-metadata-builder/
-# - text: Example dataset
-#  menu:
-#  - text: Example dataset
-#    href: /example/
-#  - text: "---"
-#  - text: Deployment 1
-#    href: /example/00a2c20d/
-#  - text: Deployment 2
-#    href: /example/29b7d356/
-#  - text: Deployment 3
-#    href: /example/577b543a/
-#  - text: Deployment 4
-#    href: /example/62c200a9/  
+- text: GLC Standard
+  menu:
+  - text: Package profile
+    href: /metadata/
+  - text: Resource schemas
+    href: /data/
+  - text: Example package
+    href: /example/
 - text: GLC Registry
   href: /registry/
-- text: Acknowledgements
-  href: /acknowledgements/
+- text: Tools
+  menu:
+  - text: Metadata builder
+    href: https://tscnlab.github.io/glc-metadata-builder/
+    new_window: true
+  - text: Validate a dataset
+    href: https://github.com/tscnlab/glc-metadata-validator#add-validation-to-a-metadata-repository
+    new_window: true
+- text: About
+  menu:
+  - text: About GLC
+    href: https://www.visualdiet.org/about
+    new_window: true
+  - text: Acknowledgements
+    href: /acknowledgements/
 - text: GitHub
-  href: https://github.com/tscnlab/glc_dp_viewer
+  href: https://github.com/tscnlab/glc-dp-viewer
+  new_window: true

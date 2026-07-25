@@ -13,7 +13,7 @@ social:
 # Theme
 theme: minima
 remote_theme: tdwg/petridish
-github_edit: true
+github_edit: false
 logo: assets/GLC_Logo.png
 
 # Build settings
