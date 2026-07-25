@@ -84,7 +84,12 @@ permalink: /registry/
   .fail { background:#fdecec; color:#b42318; }
   .unknown { background:#f2f2f2; color:#555; }
   .unavailable { background:#fff1d6; color:#8a5700; }
+  .unverified { background:#fff1d6; color:#8a5700; }
+  .legacy { background:#fff1d6; color:#8a5700; }
+  .current-schema { background:#e7f7ef; color:#137a3a; }
+  .unrecognized-schema { background:#f2f2f2; color:#555; }
   .rename-warning { display:block; margin-top:6px; color:#8a5700; }
+  .schema-note { display:block; margin-top:6px; color:#8a5700; max-width:260px; }
 
   .muted { opacity: 0.75; }
 
@@ -104,8 +109,31 @@ permalink: /registry/
 
   function pill(status) {
     const s = (status || "unknown").toLowerCase();
-    const cls = s === "pass" ? "pass" : s === "fail" ? "fail" : s === "repository unavailable" ? "unavailable" : "unknown";
+    const cls = s === "pass" ? "pass"
+      : s === "fail" ? "fail"
+      : s === "repository unavailable" ? "unavailable"
+      : s === "unverified" ? "unverified"
+      : "unknown";
     return `<span class="pill ${cls}">${s}</span>`;
+  }
+
+  function schemaVersion(validation, currentVersion) {
+    if (!validation) return `<span class="muted">—</span>`;
+    const version = validation.schema_version || "";
+    if (!version) return `<span class="pill unknown">not reported</span>`;
+    if (validation.schema_lifecycle === "legacy" || validation.upgrade_recommended) {
+      return `
+        <span class="pill legacy">${version} — legacy</span>
+        <span class="schema-note">Upgrade recommended; not validated against ${currentVersion || "the current GLC schema"}.</span>
+      `;
+    }
+    if (validation.schema_lifecycle === "unrecognized") {
+      return `
+        <span class="pill unrecognized-schema">unrecognized ${version}</span>
+        <span class="schema-note">Update the registry’s current schema-version configuration before interpreting this result.</span>
+      `;
+    }
+    return `<span class="pill current-schema">${version} — current</span>`;
   }
 
   function repositoryUnavailable(dataset) {
@@ -149,6 +177,7 @@ permalink: /registry/
 
     const rows = data.datasets || [];
     const updated = data.generated_at_utc || "";
+    const currentSchemaVersion = data.current_schema_version || "";
 
     const html = `
       <p class="small">Registry updated: <code>${fmtUtc(updated)}</code> · Datasets: <code>${rows.length}</code></p>
@@ -159,6 +188,7 @@ permalink: /registry/
             <th class="repo-col">Dataset repository</th>
             <th>State</th>
             <th>Status</th>
+            <th>Schema</th>
             <th>Commit</th>
             <th class="when-col">Validated at</th>
             <th class="llw-col">LightLogWeb</th>
@@ -178,8 +208,15 @@ permalink: /registry/
             const cur = d.current || null;      // most recent run
             const canSendToLlw = !repoUnavailable && lp && String(lp.status).toLowerCase() === "pass";
 
-            const lpStatus = repoUnavailable ? "repository unavailable" : (lp && lp.status ? lp.status : "unknown");
-            const curStatus = repoUnavailable ? "repository unavailable" : (cur && cur.status ? cur.status : "unknown");
+            const unverified = !repoUnavailable && d.attestation_verified === false && (d.fetch_errors || []).length > 0;
+            const lpStatus = repoUnavailable ? "repository unavailable"
+              : lp && lp.status ? lp.status
+              : unverified ? "unverified"
+              : "unknown";
+            const curStatus = repoUnavailable ? "repository unavailable"
+              : cur && cur.status ? cur.status
+              : unverified ? "unverified"
+              : "unknown";
 
             const lpSha = lp && lp.commit_sha ? lp.commit_sha : "";
             const curSha = cur && cur.commit_sha ? cur.commit_sha : "";
@@ -204,6 +241,8 @@ permalink: /registry/
 
                     <td>${pill(lpStatus)}</td>
 
+                    <td>${schemaVersion(lp, currentSchemaVersion)}</td>
+
                     <td>
                     ${lpSha ? `<a href="${lpShaUrl}"><code>${sha7(lpSha)}</code></a>` : `<span class="muted">—</span>`}
                     </td>
@@ -226,6 +265,8 @@ permalink: /registry/
 
                     <td>${pill(curStatus)}</td>
 
+                    <td>${schemaVersion(cur, currentSchemaVersion)}</td>
+
                     <td>
                     ${curSha ? `<a href="${curShaUrl}"><code>${sha7(curSha)}</code></a>` : `<span class="muted">—</span>`}
                     </td>
@@ -240,10 +281,6 @@ permalink: /registry/
         </tbody>
       </table>
 
-      <p class="small" style="margin-top:12px;">
-        Missing a dataset? Add it to <code>datasets.yml</code> in the registry repo and wait for the next scheduled run.
-        Unavailable repositories must be removed from <code>datasets.yml</code> manually.
-      </p>
     `;
 
     app.innerHTML = html;
