@@ -414,6 +414,140 @@ a:focus {
   margin-bottom: 0.35rem;
 }
 
+.glc-page-lead {
+  max-width: 850px;
+  margin-bottom: 1.5rem;
+  color: #43515a;
+  font-size: 1.18rem;
+  line-height: 1.65;
+}
+
+.validation-journey {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 0.55rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.validation-journey a {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 58px;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #c9e5e4;
+  border-radius: 8px;
+  background: #f4fbfb;
+  color: #173c45;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+.validation-journey a:hover,
+.validation-journey a:focus {
+  border-color: var(--glc-accent);
+  background: #eafafa;
+  color: #087f95;
+}
+
+.validation-journey span,
+.step-number {
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 1.75rem;
+  height: 1.75rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--glc-accent);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+h2 .step-number {
+  margin-right: 0.65rem;
+  vertical-align: 0.15em;
+}
+
+.glc-note {
+  margin: 1.25rem 0;
+  padding: 1rem 1.15rem;
+  border-left: 4px solid #2b98a8;
+  border-radius: 0 6px 6px 0;
+  background: #f0f9fa;
+  color: #31474d;
+}
+
+.glc-note strong {
+  color: #173c45;
+}
+
+.glc-term-list {
+  margin: 0.55rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.glc-term-list li {
+  margin-bottom: 0.25rem;
+}
+
+.glc-term-list li:last-child {
+  margin-bottom: 0;
+}
+
+.glc-note-important {
+  border-left-color: #e28b2d;
+  background: #fff8ed;
+}
+
+.glc-note-review {
+  border-left-color: #805ad5;
+  background: #f7f3ff;
+}
+
+.glc-action-link {
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  background: #087f95;
+  color: #fff !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.glc-action-link:hover,
+.glc-action-link:focus {
+  background: #065f70;
+}
+
+.validation-files {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 1.25rem 0 1.5rem;
+}
+
+.validation-files article {
+  padding: 1rem 1.1rem;
+  border: 1px solid #d9e5e8;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.validation-files h3 {
+  margin: 0 0 0.55rem;
+  font-size: 1rem;
+}
+
+.validation-files p {
+  margin: 0;
+  color: #526169;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
 .table thead th,
 table thead th {
   border-bottom-color: var(--glc-accent);
@@ -546,6 +680,20 @@ table thead th {
   }
 
   .example-field {
+    grid-template-columns: 1fr;
+  }
+
+  .validation-journey {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .validation-files {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .validation-journey {
     grid-template-columns: 1fr;
   }
 }

@@ -45,7 +45,7 @@ users can distinguish current packages from legacy or unverified records.
 ## Related software
 
 - [GLC metadata builder](https://tscnlab.github.io/glc-metadata-builder/)
-- [Validate a dataset](https://github.com/tscnlab/glc-metadata-validator#add-validation-to-a-metadata-repository) — add the GLC validation workflow to a GitHub dataset repository.
+- [Validate a dataset]({{ '/validate/' | relative_url }}) — follow the complete workflow from package preparation to registry review.
 - [LightLogR](https://github.com/tscnlab/LightLogR)
 
 ## Citation
