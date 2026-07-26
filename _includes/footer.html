@@ -57,3 +57,44 @@
     anchors.add(headings);
   })();
 </script>
+<script>
+  (function () {
+    function revealSchemaReference() {
+      if (!window.location.hash) return;
+
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      let parent = target.parentElement;
+      while (parent) {
+        if (parent.tagName === "DETAILS") parent.open = true;
+        parent = parent.parentElement;
+      }
+
+      window.requestAnimationFrame(function () {
+        target.scrollIntoView({ block: "start" });
+        target.classList.remove("schema-reference-target");
+        window.requestAnimationFrame(function () {
+          target.classList.add("schema-reference-target");
+        });
+      });
+    }
+
+    window.addEventListener("hashchange", revealSchemaReference);
+    window.addEventListener("load", revealSchemaReference);
+    document.addEventListener("click", function (event) {
+      const link = event.target.closest('a[href*="#"]');
+      if (!link) return;
+
+      const destination = new URL(link.href, window.location.href);
+      if (
+        destination.origin === window.location.origin
+        && destination.pathname === window.location.pathname
+        && destination.hash
+      ) {
+        window.setTimeout(revealSchemaReference, 0);
+      }
+    });
+  })();
+</script>

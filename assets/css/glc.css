@@ -332,6 +332,28 @@ a:focus {
   font-size: 0.8em;
 }
 
+.schema-root-table tr[id],
+.schema-nested-row[id] {
+  scroll-margin-top: 1.5rem;
+}
+
+.schema-reference-target {
+  animation: schema-reference-highlight 2.4s ease-out;
+}
+
+@keyframes schema-reference-highlight {
+  0%,
+  35% {
+    background: rgba(16, 185, 129, 0.16);
+    box-shadow: inset 4px 0 0 #0f766e;
+  }
+
+  100% {
+    background: transparent;
+    box-shadow: inset 4px 0 0 transparent;
+  }
+}
+
 .schema-example {
   margin: 0.65rem 0 0;
   padding: 0.45rem 0.65rem;
