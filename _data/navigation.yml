@@ -18,8 +18,7 @@
     href: https://tscnlab.github.io/glc-metadata-builder/
     new_window: true
   - text: Validate a dataset
-    href: https://github.com/tscnlab/glc-metadata-validator#add-validation-to-a-metadata-repository
-    new_window: true
+    href: /validate/
 - text: About
   menu:
   - text: About GLC
