@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a compact, valid GLC 3.0.0 example from the MeLiDos IZTECH package."""
+"""Build a compact, valid GLC 3.0.1 example from the MeLiDos IZTECH package."""
 
 from __future__ import annotations
 
@@ -52,7 +52,7 @@ def build(source: Path, target: Path) -> None:
 
     descriptor = read_json(source / "datapackage.json")
     descriptor["name"] = "melidos-iztech-glc-compact-example"
-    descriptor["title"] = "Compact MeLiDos IZTECH GLC 3.0.0 example"
+    descriptor["title"] = "Compact MeLiDos IZTECH GLC 3.0.1 example"
     write_json(target / "datapackage.json", descriptor)
 
     study = read_json(source / "data/study.json")

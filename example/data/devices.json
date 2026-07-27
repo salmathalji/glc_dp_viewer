@@ -1,6 +1,6 @@
 [
   {
-    "schema_version": "3.0.0",
+    "schema_version": "3.0.1",
     "device_internal_id": "IZTECH_AL03",
     "device_manufacturer": "Condor Instruments",
     "device_model": "ActLumus AL0101",
@@ -24,7 +24,7 @@
     "device_firmware_version": "1.8"
   },
   {
-    "schema_version": "3.0.0",
+    "schema_version": "3.0.1",
     "device_internal_id": "IZTECH_AL04",
     "device_manufacturer": "Condor Instruments",
     "device_model": "ActLumus AL0101",

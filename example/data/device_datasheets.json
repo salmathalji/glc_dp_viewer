@@ -1,6 +1,6 @@
 [
   {
-    "schema_version": "3.0.0",
+    "schema_version": "3.0.1",
     "datasheet_id": "actlumus-al0101",
     "datasheet_manufacturer": "Condor Instruments",
     "datasheet_type": "Wearable actigraph",
