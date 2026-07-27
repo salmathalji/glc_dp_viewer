@@ -4,7 +4,7 @@ permalink: /example/
 toc: true
 ---
 
-This compact GLC 3.0.1 example is derived from the
+This compact GLC 3.0.2 example is derived from the
 [MeLiDos IZTECH data package](https://github.com/tscnlab/melidos-iztech-glc-dataset).
 It shows how metadata resources and data files are organized and linked in a
 valid package without reproducing the complete study repository.
@@ -29,7 +29,7 @@ glc-example-package/
 ├── datapackage.json
 ├── json-entity-resource.json
 ├── schemas/
-│   └── 3.0.1/
+│   └── 3.0.2/
 └── data/
     ├── study.json
     ├── participants.csv

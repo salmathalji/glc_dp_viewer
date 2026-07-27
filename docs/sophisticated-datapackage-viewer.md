@@ -45,14 +45,14 @@ the variable metadata, and plot relevant light measurements.
 
 The current registry logic and Jekyll documentation can be retained while the
 interactive datapackage explorer is developed as a separate application
-surface. Updating schema documentation for GLC 3.0.1 is a prerequisite, but it
+surface. Updating schema documentation for GLC 3.0.2 is a prerequisite, but it
 is not itself the sophisticated datapackage viewer described here.
 
 ## Suggested delivery phases
 
 1. Connect the viewer to the canonical, versioned GLC schema source.
 2. Update schema documentation and remove obsolete legacy content. **Completed locally.**
-3. Add a valid, compact GLC 3.0.1 example and automated rendering tests.
+3. Add a valid, compact GLC 3.0.2 example and automated rendering tests.
 4. Implement metadata and relationship browsing.
 5. Add tabular previews, variable dictionaries, and validation information.
 6. Add time-series visualization and data-quality summaries.
@@ -68,7 +68,7 @@ is not itself the sophisticated datapackage viewer described here.
   alongside corresponding field labels and descriptions from the resource
   schemas, with nested JSON and tabular CSV rendering.
 - [x] Provide direct CSV/JSON downloads for the current example resources.
-- [x] Provide a downloadable GLC 3.0.1 schema bundle.
+- [x] Provide a downloadable GLC 3.0.2 schema bundle.
 
 ## Shared visual identity
 
