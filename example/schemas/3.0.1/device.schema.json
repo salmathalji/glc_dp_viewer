@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/tscnlab/glc-metadata-validator/main/schemas/3.0.0/device.schema.json",
-  "version": "3.0.0",
+  "$id": "https://raw.githubusercontent.com/tscnlab/glc-metadata-validator/main/schemas/3.0.1/device.schema.json",
+  "version": "3.0.1",
   "title": "Device Schema",
   "type": "object",
   "additionalProperties": false,
@@ -10,7 +10,7 @@
       "type": "string",
       "description": "Version of the metadata schema used by this device record",
       "examples": [
-        "3.0.0"
+        "3.0.1"
       ]
     },
     "device_internal_id": {

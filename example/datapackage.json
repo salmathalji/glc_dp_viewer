@@ -1,15 +1,15 @@
 {
-  "profile": "schemas/3.0.0/glc-dp-profile.json",
-  "schema_version": "3.0.0",
+  "profile": "schemas/3.0.1/glc-dp-profile.json",
+  "schema_version": "3.0.1",
   "name": "melidos-iztech-glc-compact-example",
-  "title": "Compact MeLiDos IZTECH GLC 3.0.0 example",
+  "title": "Compact MeLiDos IZTECH GLC 3.0.1 example",
   "resources": [
     {
       "name": "study",
       "path": "data/study.json",
       "profile": "json-entity-resource.json",
       "mediatype": "application/json",
-      "jsonSchema": "schemas/3.0.0/study.schema.json"
+      "jsonSchema": "schemas/3.0.1/study.schema.json"
     },
     {
       "name": "participants",
@@ -17,7 +17,7 @@
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
-      "schema": "schemas/3.0.0/participants.schema.json"
+      "schema": "schemas/3.0.1/participants.schema.json"
     },
     {
       "name": "participant_characteristics",
@@ -25,28 +25,28 @@
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
-      "schema": "schemas/3.0.0/participant_characteristics.schema.json"
+      "schema": "schemas/3.0.1/participant_characteristics.schema.json"
     },
     {
       "name": "datasets",
       "path": "data/datasets.json",
       "profile": "json-entity-resource.json",
       "mediatype": "application/json",
-      "jsonSchema": "schemas/3.0.0/dataset.schema.json"
+      "jsonSchema": "schemas/3.0.1/dataset.schema.json"
     },
     {
       "name": "devices",
       "path": "data/devices.json",
       "profile": "json-entity-resource.json",
       "mediatype": "application/json",
-      "jsonSchema": "schemas/3.0.0/device.schema.json"
+      "jsonSchema": "schemas/3.0.1/device.schema.json"
     },
     {
       "name": "device_datasheets",
       "path": "data/device_datasheets.json",
       "profile": "json-entity-resource.json",
       "mediatype": "application/json",
-      "jsonSchema": "schemas/3.0.0/device_datasheet.schema.json"
+      "jsonSchema": "schemas/3.0.1/device_datasheet.schema.json"
     }
   ]
 }
