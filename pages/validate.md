@@ -51,7 +51,7 @@ your-package/
 ├── datapackage.json
 ├── README.txt
 ├── schemas/
-│   └── 3.0.1/
+│   └── 3.0.2/
 │       ├── glc-dp-profile.json
 │       └── … resource schemas
 └── data/

@@ -222,7 +222,6 @@
     },
     "datasheet_channel": {
       "type": "array",
-      "minItems": 1,
       "description": "Information on channels exported by the device or sensor",
       "items": {
         "type": "object",
