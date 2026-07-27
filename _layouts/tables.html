@@ -36,6 +36,7 @@ layout: default
     margin-top: 0.5rem;
     padding-left: 1rem;
     border-left: 2px solid rgba(0,0,0,0.08);
+    container-type: inline-size;
   }
 
   .schema-nested-row {
@@ -75,8 +76,38 @@ layout: default
   .schema-nested-def p,
   .schema-nested-def li {
     word-break: normal !important;
-    overflow-wrap: normal !important;
+    overflow-wrap: break-word !important;
     hyphens: manual !important;
+  }
+
+  /* Nested schemas live inside the Definition column. Respond to that
+     container's width rather than the width of the browser window. */
+  @container (max-width: 560px) {
+    .schema-nested-row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 0.4rem 0.75rem;
+    }
+
+    .schema-nested-def {
+      grid-column: 1 / -1;
+    }
+
+    .schema-nested-type {
+      grid-column: 2;
+      grid-row: 1;
+    }
+  }
+
+  @container (max-width: 340px) {
+    .schema-nested-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .schema-nested-type {
+      grid-column: 1;
+      grid-row: auto;
+      text-align: left;
+    }
   }
 
   /* Resource-level badges (Required / Example) */
