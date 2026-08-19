@@ -11,9 +11,7 @@ permalink: /registry/
   The GLC registry lists dataset repositories that have run the trusted GLC
   validation workflow. A passing entry conforms to the displayed GLC schema
   version at the specified commit; it does not imply conformance to later
-  schema versions. When a passing validation is available, <strong>Send to
-  LLW</strong> opens that dataset package in LightLogWeb for exploration and
-  analysis.
+  schema versions.
 </p>
 
 <p class="small">
@@ -42,6 +40,8 @@ permalink: /registry/
   th { text-align: left; font-weight: 700; }
 
   /* Column sizing */
+  th.name-col { width: 240px; }
+  td.name-col { font-weight: 700; }
   th.repo-col { width: 420px; }
   td.repo-col code {
     display: inline-block;
@@ -116,6 +116,7 @@ permalink: /registry/
 (function () {
   const REGISTRY_URL = "https://tscnlab.github.io/glc-registry/registry.json";
   const LIGHTLOGWEB_URL = "https://tscnlab-lightlogweb.share.connect.posit.cloud";
+  const SHOW_LIGHTLOGWEB = false;
 
   function lightLogWebUrl(repo) {
     return `${LIGHTLOGWEB_URL}?repo=${encodeURIComponent(String(repo))}`;
@@ -199,18 +200,20 @@ permalink: /registry/
       <table>
         <thead>
           <tr>
+            <th class="name-col">Dataset name</th>
             <th class="repo-col">Dataset repository</th>
             <th>State</th>
             <th>Status</th>
             <th>Schema</th>
             <th>Commit</th>
             <th class="when-col">Validated at</th>
-            <th class="llw-col">LightLogWeb</th>
+            ${SHOW_LIGHTLOGWEB ? `<th class="llw-col">LightLogWeb</th>` : ""}
           </tr>
         </thead>
         <tbody>
           ${rows.map((d, idx) => {
             const repo = d.repo || d.id || "";
+            const datasetName = d.name || d.title || d.id || repo;
             const configuredRepo = d.configured_repo || repo;
             const repoRenamed = d.repository_status === "renamed" && configuredRepo !== repo;
             const repoUrl = d.repo ? `https://github.com/${d.repo}` : "#";
@@ -245,6 +248,7 @@ permalink: /registry/
             // still render both rows as unknown rather than breaking.
             return `
                 <tr class="group-start">
+                    <td class="name-col" rowspan="2">${datasetName}</td>
                     <td class="repo-col" rowspan="2">
                     <a href="${repoUrl}"><code>${repo}</code></a>
                     ${repoRenamed ? `<span class="rename-warning"><b>Repository renamed</b><br><code>${configuredRepo}</code> → <code>${repo}</code><br>Registry update pending.<br>Rerun the dataset validation workflow to refresh its trusted validation status.</span>` : ""}
@@ -265,13 +269,13 @@ permalink: /registry/
                     ${lpWhen ? `<code>${lpWhen}</code>` : `<span class="muted">—</span>`}
                     </td>
 
-                    <td class="llw-col" rowspan="2">
+                    ${SHOW_LIGHTLOGWEB ? `<td class="llw-col" rowspan="2">
                     ${repoUnavailable
                       ? `<span class="llw-disabled">Unavailable</span>`
                       : canSendToLlw && llwUrl
                         ? `<a class="llw-button" href="${llwUrl}" target="_blank" rel="noopener noreferrer">Send to LLW</a>`
                         : `<span class="llw-disabled">No passing validation</span>`}
-                    </td>
+                    </td>` : ""}
                 </tr>
 
                 <tr class="group-end">
