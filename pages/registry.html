@@ -40,16 +40,8 @@ permalink: /registry/
   th { text-align: left; font-weight: 700; }
 
   /* Column sizing */
-  th.name-col { width: 240px; }
-  td.name-col { font-weight: 700; }
-  th.repo-col { width: 420px; }
-  td.repo-col code {
-    display: inline-block;
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  th.name-col { width: 360px; }
+  td.name-col { font-weight: 700; white-space: nowrap; }
   th.llw-col, td.llw-col { width: 130px; text-align: center; }
   td.llw-col { vertical-align: top; }
   .llw-button {
@@ -200,8 +192,7 @@ permalink: /registry/
       <table>
         <thead>
           <tr>
-            <th class="name-col">Dataset name</th>
-            <th class="repo-col">Dataset repository</th>
+            <th class="name-col">Dataset</th>
             <th>State</th>
             <th>Status</th>
             <th>Schema</th>
@@ -248,9 +239,8 @@ permalink: /registry/
             // still render both rows as unknown rather than breaking.
             return `
                 <tr class="group-start">
-                    <td class="name-col" rowspan="2">${datasetName}</td>
-                    <td class="repo-col" rowspan="2">
-                    <a href="${repoUrl}"><code>${repo}</code></a>
+                    <td class="name-col" rowspan="2">
+                    <a href="${repoUrl}" title="Open ${repo} on GitHub">${datasetName}</a>
                     ${repoRenamed ? `<span class="rename-warning"><b>Repository renamed</b><br><code>${configuredRepo}</code> → <code>${repo}</code><br>Registry update pending.<br>Rerun the dataset validation workflow to refresh its trusted validation status.</span>` : ""}
                     ${!repoRenamed && needsValidationRerun ? `<span class="rename-warning"><b>Validation refresh required</b><br>Rerun the dataset validation workflow after the repository rename.</span>` : ""}
                     </td>
