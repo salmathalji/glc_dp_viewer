@@ -18,10 +18,21 @@
         <ul class="navbar-nav ms-auto">
           {% for item in navigation %}
             {% if item.menu %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                  {{ item.text }}
-                </a>
+              <li class="nav-item dropdown{% if item.href %} nav-item-with-landing{% endif %}">
+                {% if item.href %}
+                  <a class="nav-link{% if item.href == page.url %} active{% endif %}"
+                     href="{{ item.href | relative_url }}">
+                    {{ item.text }}
+                  </a>
+                  <button class="nav-link dropdown-toggle dropdown-toggle-split" type="button"
+                          data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Open {{ item.text }} menu</span>
+                  </button>
+                {% else %}
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    {{ item.text }}
+                  </a>
+                {% endif %}
                 <div class="dropdown-menu dropdown-menu-end">
                   {% for subitem in item.menu %}
                     {% if subitem.href %}

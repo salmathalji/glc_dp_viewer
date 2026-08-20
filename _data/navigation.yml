@@ -13,12 +13,21 @@
 - text: GLC Registry
   href: /registry/
 - text: Tools
+  href: /tools/
   menu:
+  - text: Tools overview
+    href: /tools/
   - text: Metadata builder
     href: https://tscnlab.github.io/glc-metadata-builder/
     new_window: true
   - text: Validate a dataset
     href: /validate/
+  - text: GLC-dp
+    href: https://tscnlab.github.io/glc-dp-r/
+    new_window: true
+  - text: LightLogR
+    href: https://tscnlab.github.io/LightLogR/
+    new_window: true
 - text: About
   menu:
   - text: About GLC
