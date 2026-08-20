@@ -61,6 +61,22 @@ body {
   color: var(--glc-accent-dark);
 }
 
+#main-nav .nav-item-with-landing {
+  display: flex;
+  align-items: center;
+}
+
+#main-nav .nav-item-with-landing > .nav-link:first-child {
+  padding-right: 0.2rem;
+}
+
+#main-nav .nav-item-with-landing > .dropdown-toggle-split {
+  width: auto;
+  padding-left: 0.2rem;
+  border: 0;
+  background: transparent;
+}
+
 #main-nav .navbar-toggler {
   border-color: var(--glc-accent);
   color: var(--glc-accent-dark);
@@ -118,6 +134,89 @@ a {
 a:hover,
 a:focus {
   color: var(--glc-coral);
+}
+
+.tools-intro {
+  max-width: 720px;
+  margin-bottom: 2rem;
+  color: var(--glc-muted);
+  font-size: 1.05rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 3rem;
+}
+
+.tool-card {
+  display: flex;
+  min-height: 230px;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid var(--glc-line);
+  border-radius: 0.9rem;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(24, 37, 34, 0.07);
+}
+
+.tool-card:hover {
+  border-color: rgba(6, 182, 212, 0.55);
+  box-shadow: 0 14px 34px rgba(24, 37, 34, 0.11);
+  transform: translateY(-2px);
+}
+
+.tool-card-icon {
+  display: inline-flex;
+  width: 7rem;
+  height: 7rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  background: var(--glc-accent-soft);
+  color: var(--glc-accent-dark);
+  font-size: 3rem;
+}
+
+.tool-card-logo {
+  overflow: hidden;
+  background: #fff;
+}
+
+.tool-card-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tool-card h2 {
+  margin: 0 0 0.65rem;
+  color: var(--glc-ink);
+  font-size: 1.3rem !important;
+  font-weight: 750 !important;
+}
+
+.tool-card p {
+  margin: 0 0 1.25rem;
+  color: var(--glc-muted);
+}
+
+.tool-card-link {
+  margin-top: auto;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 767.98px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tool-card {
+    min-height: 0;
+  }
 }
 
 .glc-download-button {
