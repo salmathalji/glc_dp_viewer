@@ -5,8 +5,8 @@ license: MIT
 title: Global Light Commons Data Package Viewer
 authors:
   - name: GLC Development Team
-repository-code: https://github.com/tscnlab/glc-dp-viewer
-url: https://tscnlab.github.io/glc-dp-viewer/
+repository-code: https://github.com/globallightcommons/glc-dp-viewer
+url: https://globallightcommons.github.io/glc-dp-viewer/
 keywords:
   - light exposure
   - optical radiation

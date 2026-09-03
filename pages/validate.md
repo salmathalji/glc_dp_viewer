@@ -30,7 +30,7 @@ You need:
 Review the required structure and fields in the
 [GLC Standard resource schemas]({{ '/schemas/' | relative_url }}). You can create
 or edit the metadata using the
-[GLC Metadata Builder](https://tscnlab.github.io/glc-metadata-builder/) or
+[GLC Metadata Builder](https://globallightcommons.github.io/glc-metadata-builder/) or
 prepare the files manually with a text editor.
 
 <div class="glc-note">
@@ -213,7 +213,7 @@ validation evidence, and a GLC maintainer reviews the request.
 </p>
 
 The registry repository maintains its list in
-[`datasets.yml`](https://github.com/tscnlab/glc-registry/blob/main/datasets.yml).
+[`datasets.yml`](https://github.com/globallightcommons/glc-registry/blob/main/datasets.yml).
 Only submit a request after the dataset's `main` branch has a passing
 validation run for its current commit.
 
@@ -248,16 +248,16 @@ artifact for the exact dataset commit.
 If you can edit the registry repository:
 
 1. Open
-   [`datasets.yml`](https://github.com/tscnlab/glc-registry/blob/main/datasets.yml).
+   [`datasets.yml`](https://github.com/globallightcommons/glc-registry/blob/main/datasets.yml).
 2. Select the pencil icon.
 3. Add the entry.
 4. Select **Commit changes**.
 5. Choose **Create a new branch for this commit and start a pull request**.
 6. Open the pull request against the registry's `main` branch.
 
-If GitHub does not allow you to edit the file, fork `tscnlab/glc-registry`,
+If GitHub does not allow you to edit the file, fork `globallightcommons/glc-registry`,
 edit `datasets.yml` in your fork, and open a pull request from that fork to
-`tscnlab/glc-registry:main`.
+`globallightcommons/glc-registry:main`.
 
 ### What happens after submission
 

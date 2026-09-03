@@ -2,12 +2,12 @@
 title: Global Light Commons
 author: GLC Development Team
 email: johannes.zauner@tum.de
-url: "https://tscnlab.github.io"
+url: "https://globallightcommons.github.io"
 baseurl: "/glc-dp-viewer"
 
 # SOCIAL PROFILES
 social:
-  github: tscnlab/glc-dp-viewer
+  github: globallightcommons/glc-dp-viewer
 
 
 # Theme
@@ -17,7 +17,7 @@ github_edit: false
 logo: assets/GLC_Logo.png
 
 # Build settings
-repository: tscnlab/glc-dp-viewer # Required so Jekyll on GitHub Actions can access repo metadata
+repository: globallightcommons/glc-dp-viewer # Required so Jekyll on GitHub Actions can access repo metadata
 markdown: kramdown
 plugins:
   - jekyll-feed
