@@ -1,100 +1,118 @@
-<footer class="glc-footer d-print-none">
-  <div class="container">
+<footer class="glc-footer">
+  <div class="glc-footer-inner">
+
     <div class="glc-footer-top">
-      <section class="glc-footer-intro">
-        <a href="https://globallightcommons.org" aria-label="Global Light Commons">
-          <img src="{{ site.logo | relative_url }}" alt="Global Light Commons">
-        </a>
+
+      <div class="glc-footer-brand">
+        <img
+          src="https://tscnlab.github.io/globallightcommons/assets/images/legacy/glc-logo.png"
+          alt="Global Light Commons"
+          class="glc-footer-logo"
+        >
+
         <p>
-          The Global Light Commons initiative at the Technical University of
-          Munich studies how light affects health and well-being across cultures
-          and environments.
+          Global Light Commons Research Initiative at the Technical
+          University of Munich, studying how light affects health and
+          well-being across cultures and environments.
         </p>
+
         <div class="glc-footer-social">
-          <a href="https://github.com/tscnlab/glc-dp-viewer" aria-label="GLC on GitHub">
+          <a
+            href="https://www.linkedin.com/in/spitschan/"
+            aria-label="LinkedIn"
+          >
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+
+          <a
+            href="https://github.com/tscnlab"
+            aria-label="GitHub"
+          >
             <i class="fa-brands fa-github"></i>
           </a>
-          <a href="mailto:{{ site.email }}" aria-label="Email the GLC team">
+
+          <a
+            href="https://www.youtube.com/channel/UCTrGLi-baRDhagV8ckBFgPQ"
+            aria-label="YouTube"
+          >
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+
+          <a
+            href="mailto:manuel.spitschan@tum.de"
+            aria-label="Email"
+          >
             <i class="fa-regular fa-envelope"></i>
           </a>
         </div>
-      </section>
+      </div>
 
-      <section class="glc-footer-links">
-        <h2>Quick links</h2>
-        <ul>
-          <li><a href="https://globallightcommons.org">Global Light Commons initiative</a></li>
-          <li><a href="{{ '/registry/' | relative_url }}">GLC dataset registry</a></li>
-          <li><a href="https://tscnlab.github.io/LightLogR/">LightLogR</a></li>
-          <li><a href="https://tscnlab.github.io/glc-metadata-builder/">Metadata builder</a></li>
-        </ul>
-      </section>
+      <div class="glc-footer-links">
+        <h3>Quick Links</h3>
+
+        <a href="https://tscnlab.github.io/globallightcommons/about/">
+          About Us
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/research/">
+          Research
+        </a>
+
+        <a href="{{ '/registry/' | relative_url }}">
+          GLC dataset registry
+        </a>
+
+        <a href="https://tscnlab.github.io/glc-metadata-builder/">
+          Metadata builder
+        </a>
+
+        <a href="https://tscnlab.github.io/LightLogR/">
+          LightLogR
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/news/">
+          News &amp; Events
+        </a>
+      </div>
+
     </div>
 
-    <section class="glc-affiliation">
+    <div class="glc-footer-affiliation">
       <img
-        src="{{ '/assets/tscn-unit-logo.png' | relative_url }}"
-        alt="Translational Sensory and Circadian Neuroscience Unit"
+        src="https://tscnlab.github.io/globallightcommons/assets/tscn-unit-logo.png"
+        alt="Translational Sensory & Circadian Neuroscience Unit"
+        class="glc-tscn-logo"
       >
+
       <p>
         GLC is a research initiative by the Translational Sensory &amp; Circadian
         Neuroscience Unit at Technical University of Munich.
       </p>
-    </section>
+    </div>
 
     <div class="glc-footer-bottom">
-      <span>© 2026 GLC Research Initiative. All rights reserved.</span>
-      <a href="https://github.com/tscnlab/glc-dp-viewer/blob/main/LICENSE">MIT License</a>
+      <span>
+        © 2026 GLC Research Initiative. All rights reserved.
+      </span>
+
+      <div class="glc-footer-legal">
+        <a
+          href="https://www.hs.mh.tum.de/en/mgt/datenschutz/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Privacy Policy
+        </a>
+
+        <a
+          href="https://www.hs.mh.tum.de/en/mgt/impressum/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Terms of Use
+        </a>
+      </div>
     </div>
+
   </div>
 </footer>
-
-<script src="{{ '/assets/theme/js/anchor.min.js' | relative_url }}"></script>
-<script>
-  (function () {
-    const headings = ".content h2[id], .content h3[id], .content h4[id], .content h5[id], .content h6[id]";
-    anchors.options = { placement: "right" };
-    anchors.add(headings);
-  })();
-</script>
-<script>
-  (function () {
-    function revealSchemaReference() {
-      if (!window.location.hash) return;
-
-      const id = decodeURIComponent(window.location.hash.slice(1));
-      const target = document.getElementById(id);
-      if (!target) return;
-
-      let parent = target.parentElement;
-      while (parent) {
-        if (parent.tagName === "DETAILS") parent.open = true;
-        parent = parent.parentElement;
-      }
-
-      window.requestAnimationFrame(function () {
-        target.scrollIntoView({ block: "start" });
-        target.classList.remove("schema-reference-target");
-        window.requestAnimationFrame(function () {
-          target.classList.add("schema-reference-target");
-        });
-      });
-    }
-
-    window.addEventListener("hashchange", revealSchemaReference);
-    window.addEventListener("load", revealSchemaReference);
-    document.addEventListener("click", function (event) {
-      const link = event.target.closest('a[href*="#"]');
-      if (!link) return;
-
-      const destination = new URL(link.href, window.location.href);
-      if (
-        destination.origin === window.location.origin
-        && destination.pathname === window.location.pathname
-        && destination.hash
-      ) {
-        window.setTimeout(revealSchemaReference, 0);
-      }
-    });
-  })();
-</script>
