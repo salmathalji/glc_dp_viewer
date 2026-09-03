@@ -3,8 +3,6 @@
     <a class="navbar-brand d-flex align-items-center" href="{{ '/' | relative_url }}">
       <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
     </a>
-    <span class="glc-site-context">Data package documentation</span>
-
     {% if page.navigation and site.data[page.navigation] %}
       {% assign navigation = site.data[page.navigation] %}
     {% elsif site.data.navigation %}
@@ -14,8 +12,9 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
         Menu <i class="fa-solid fa-bars"></i>
       </button>
-      <div class="collapse navbar-collapse" id="navbar-menu">
-        <ul class="navbar-nav ms-auto">
+      <div class="collapse navbar-collapse justify-content-end" id="navbar-menu">
+        <span class="glc-site-context">Ecosystem:</span>
+        <ul class="navbar-nav">
           {% for item in navigation %}
             {% if item.menu %}
               <li class="nav-item dropdown{% if item.href %} nav-item-with-landing{% endif %}">

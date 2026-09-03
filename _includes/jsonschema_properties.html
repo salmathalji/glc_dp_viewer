@@ -41,7 +41,7 @@
             {% assign target_schema = site.data[target_key] %}
             <p class="small text-muted">
               References schema:
-              <a href="{{ site.baseurl }}/data/#{{ target_key }}">
+              <a href="{{ site.baseurl }}/schemas/#{{ target_key }}">
                 <code>{{ target_schema.title | default: target_key }}</code>
               </a>
             </p>
@@ -51,7 +51,7 @@
             {% assign ref = field['x-refersToField'] | split: "." %}
             <p class="small text-muted">
               References:
-              <a href="{{ site.baseurl }}/data/#{{ ref[0] }}.{{ ref[1] }}">
+              <a href="{{ site.baseurl }}/schemas/#{{ ref[0] }}.{{ ref[1] }}">
                 <code>{{ ref[0] }}</code>.<code>{{ ref[1] }}</code>
               </a>
             </p>
@@ -64,7 +64,7 @@
             <p class="small text-muted">
               Referenced by:
               {% for ref in inbound_refs %}
-                <a href="{{ site.baseurl }}/data/#{{ ref.schema }}.{{ ref.field }}">
+                <a href="{{ site.baseurl }}/schemas/#{{ ref.schema }}.{{ ref.field }}">
                   <code>{{ ref.schema }}</code>.<code>{{ ref.field }}</code>
                 </a>{% if forloop.last == false %}, {% endif %}
               {% endfor %}
@@ -161,7 +161,7 @@
               {% assign target_schema = site.data[target_key] %}
               <p class="small text-muted">
                 References schema:
-                <a href="{{ site.baseurl }}/data/#{{ target_key }}">
+                <a href="{{ site.baseurl }}/schemas/#{{ target_key }}">
                   <code>{{ target_schema.title | default: target_key }}</code>
                 </a>
               </p>
@@ -171,7 +171,7 @@
               {% assign ref = field['x-refersToField'] | split: "." %}
               <p class="small text-muted">
                 References:
-                <a href="{{ site.baseurl }}/data/#{{ ref[0] }}.{{ ref[1] }}">
+                <a href="{{ site.baseurl }}/schemas/#{{ ref[0] }}.{{ ref[1] }}">
                   <code>{{ ref[0] }}</code>.<code>{{ ref[1] }}</code>
                 </a>
               </p>
@@ -184,7 +184,7 @@
               <p class="small text-muted">
                 Referenced by:
                 {% for ref in inbound_refs %}
-                  <a href="{{ site.baseurl }}/data/#{{ ref.schema }}.{{ ref.field }}">
+                  <a href="{{ site.baseurl }}/schemas/#{{ ref.schema }}.{{ ref.field }}">
                     <code>{{ ref.schema }}</code>.<code>{{ ref.field }}</code>
                   </a>{% if forloop.last == false %}, {% endif %}
                 {% endfor %}

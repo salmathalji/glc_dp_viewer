@@ -1,7 +1,7 @@
 ---
 layout: profile
 title: GLC data package standard
-permalink: /metadata/
+permalink: /profile/
 toc: true
 ---
 

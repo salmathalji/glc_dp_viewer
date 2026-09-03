@@ -1,7 +1,7 @@
 ---
 layout: tables
 title: Schemas
-permalink: /data/
+permalink: /schemas/
 toc: true
 ---
 

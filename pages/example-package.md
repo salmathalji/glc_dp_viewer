@@ -1,6 +1,6 @@
 ---
 title: Example data package
-permalink: /example/
+permalink: /example-package/
 toc: true
 ---
 

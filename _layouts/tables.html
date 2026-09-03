@@ -249,7 +249,7 @@ Compute inbound references to this schema section (table_schema_id):
       {% assign parts = ref | split: "|" %}
       {% assign src_schema = parts[0] %}
       {% assign src_field = parts[1] %}
-      <a href="{{ site.baseurl }}/data/#{{ src_schema }}.{{ src_field }}">
+      <a href="{{ site.baseurl }}/schemas/#{{ src_schema }}.{{ src_field }}">
         <code>{{ src_schema }}</code>.<code>{{ src_field }}</code>
       </a>{% if forloop.last == false %}, {% endif %}
     {% endfor %}
@@ -312,7 +312,7 @@ Compute inbound references to this schema section (table_schema_id):
                   {% if fk.fields == field.name %}
                     <p class="small text-muted">
                       References:
-                      <a href="{{ site.baseurl }}/data/#{{ fk.reference.resource }}.{{ fk.reference.fields }}">
+                      <a href="{{ site.baseurl }}/schemas/#{{ fk.reference.resource }}.{{ fk.reference.fields }}">
                         <code>{{ fk.reference.resource }}</code>.<code>{{ fk.reference.fields }}</code>
                       </a>
                     </p>
@@ -327,7 +327,7 @@ Compute inbound references to this schema section (table_schema_id):
                 <p class="small text-muted">
                   Referenced by:
                   {% for ref in inbound_refs %}
-                    <a href="{{ site.baseurl }}/data/#{{ ref.schema }}.{{ ref.field }}">
+                    <a href="{{ site.baseurl }}/schemas/#{{ ref.schema }}.{{ ref.field }}">
                       <code>{{ ref.schema }}</code>.<code>{{ ref.field }}</code>
                     </a>{% if forloop.last == false %}, {% endif %}
                   {% endfor %}

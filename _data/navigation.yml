@@ -2,15 +2,15 @@
 
 - text: Overview
   href: /
-- text: GLC Standard
+- text: Standard
   menu:
   - text: Package profile
-    href: /metadata/
+    href: /profile/
   - text: Resource schemas
-    href: /data/
+    href: /schemas/
   - text: Example package
-    href: /example/
-- text: GLC Registry
+    href: /example-package/
+- text: Registry
   href: /registry/
 - text: Tools
   href: /tools/
@@ -28,13 +28,3 @@
   - text: LightLogR
     href: https://tscnlab.github.io/LightLogR/
     new_window: true
-- text: About
-  menu:
-  - text: About GLC
-    href: https://www.visualdiet.org/about
-    new_window: true
-  - text: Acknowledgements
-    href: /acknowledgements/
-- text: GitHub
-  href: https://github.com/tscnlab/glc-dp-viewer
-  new_window: true

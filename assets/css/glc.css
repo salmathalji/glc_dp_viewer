@@ -34,9 +34,7 @@ body {
 }
 
 .glc-site-context {
-  margin-right: 24px;
-  padding-left: 16px;
-  border-left: 1px solid #e5e7eb;
+  margin-right: 12px;
   color: #6b7280;
   font-size: 0.875rem;
   white-space: nowrap;

@@ -28,7 +28,7 @@ You need:
 - permission to add files to the dataset repository.
 
 Review the required structure and fields in the
-[GLC Standard resource schemas]({{ '/data/' | relative_url }}). You can create
+[GLC Standard resource schemas]({{ '/schemas/' | relative_url }}). You can create
 or edit the metadata using the
 [GLC Metadata Builder](https://tscnlab.github.io/glc-metadata-builder/) or
 prepare the files manually with a text editor.
