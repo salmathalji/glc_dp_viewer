@@ -2,8 +2,8 @@
 title: Global Light Commons
 author: GLC Development Team
 email: johannes.zauner@tum.de
-url: "https://globallightcommons.github.io"
-baseurl: "/glc-dp-viewer"
+url: "https://docs.globallightcommons.org"
+baseurl: ""
 
 # SOCIAL PROFILES
 social:

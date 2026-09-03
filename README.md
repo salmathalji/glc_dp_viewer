@@ -6,7 +6,7 @@ Documentation and registry viewer for the **Global Light Commons (GLC)** data-pa
 
 ## Usage
 
-See the [documentation website](https://globallightcommons.github.io/glc-dp-viewer/).
+See the [documentation website](https://docs.globallightcommons.org/).
 
 ## Contribute
 

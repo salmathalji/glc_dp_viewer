@@ -6,7 +6,7 @@ title: Global Light Commons Data Package Viewer
 authors:
   - name: GLC Development Team
 repository-code: https://github.com/globallightcommons/glc-dp-viewer
-url: https://globallightcommons.github.io/glc-dp-viewer/
+url: https://docs.globallightcommons.org/
 keywords:
   - light exposure
   - optical radiation
