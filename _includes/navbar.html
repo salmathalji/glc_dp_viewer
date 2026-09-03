@@ -1,65 +1,188 @@
-<nav class="navbar navbar-expand-lg d-print-none" id="main-nav">
-  <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="{{ '/' | relative_url }}">
-      <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
+<nav class="glc-navbar">
+  <div class="glc-navbar-inner">
+
+    <a
+      href="https://tscnlab.github.io/globallightcommons/"
+      class="glc-brand"
+    >
+      <img
+        src="https://tscnlab.github.io/globallightcommons/assets/GLC_Logo.png"
+        alt="Global Light Commons"
+      >
     </a>
-    {% if page.navigation and site.data[page.navigation] %}
-      {% assign navigation = site.data[page.navigation] %}
-    {% elsif site.data.navigation %}
-      {% assign navigation = site.data.navigation %}
-    {% endif %}
-    {% if navigation %}
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
-        Menu <i class="fa-solid fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbar-menu">
-        <span class="glc-site-context">Ecosystem:</span>
-        <ul class="navbar-nav">
-          {% for item in navigation %}
-            {% if item.menu %}
-              <li class="nav-item dropdown{% if item.href %} nav-item-with-landing{% endif %}">
-                {% if item.href %}
-                  <a class="nav-link{% if item.href == page.url %} active{% endif %}"
-                     href="{{ item.href | relative_url }}">
-                    {{ item.text }}
-                  </a>
-                  <button class="nav-link dropdown-toggle dropdown-toggle-split" type="button"
-                          data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Open {{ item.text }} menu</span>
-                  </button>
-                {% else %}
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                    {{ item.text }}
-                  </a>
-                {% endif %}
-                <div class="dropdown-menu dropdown-menu-end">
-                  {% for subitem in item.menu %}
-                    {% if subitem.href %}
-                      <a class="dropdown-item{% if subitem.href == page.url %} active{% endif %}"
-                         href="{{ subitem.href | relative_url }}"
-                         {% if subitem.new_window %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                        {{ subitem.text }}
-                      </a>
-                    {% elsif subitem.text contains '---' %}
-                      <div class="dropdown-divider"></div>
-                    {% else %}
-                      <h6 class="dropdown-header">{{ subitem.text }}</h6>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-              </li>
-            {% else %}
-              <li class="nav-item">
-                <a class="nav-link{% if item.href == page.url %} active{% endif %}"
-                   href="{{ item.href | relative_url }}"
-                   {% if item.new_window %}target="_blank" rel="noopener noreferrer"{% endif %}>
-                  {{ item.text }}
-                </a>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
+
+    <div class="glc-nav-area">
+
+      <div class="glc-nav-links">
+        <a href="https://tscnlab.github.io/globallightcommons/about/">
+          About
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/research/">
+          Research
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/team/">
+          Team
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/advisory-board/">
+          Advisory Board
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/news/">
+          News
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/resources/">
+          Resources
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/acknowledgements/">
+          Acknowledgements
+        </a>
+
+        <a href="https://tscnlab.github.io/globallightcommons/contact/">
+          Contact
+        </a>
       </div>
-    {% endif %}
+
+      <div class="glc-ecosystem-nav">
+
+        <span class="glc-ecosystem-label">
+          Ecosystem:
+        </span>
+
+        <div class="glc-ecosystem-links">
+
+          <a
+            class="glc-ecosystem-link"
+            href="{{ '/' | relative_url }}"
+          >
+            Overview
+          </a>
+
+
+          <div class="glc-ecosystem-dropdown">
+
+            <div class="glc-ecosystem-parent">
+
+              <a
+                class="glc-ecosystem-link glc-ecosystem-parent-link"
+                href="{{ '/profile/' | relative_url }}"
+              >
+                Standard
+              </a>
+
+              <button
+                class="glc-ecosystem-trigger"
+                type="button"
+                aria-label="Open Standard menu"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 10 6"
+                  aria-hidden="true"
+                >
+                  <path d="M1 1l4 4 4-4"></path>
+                </svg>
+              </button>
+
+            </div>
+
+            <div class="glc-ecosystem-menu">
+
+              <a href="{{ '/profile/' | relative_url }}">
+                Package profile
+              </a>
+
+              <a href="{{ '/schemas/' | relative_url }}">
+                Resource schemas
+              </a>
+
+              <a href="{{ '/example-package/' | relative_url }}">
+                Example package
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <a
+            class="glc-ecosystem-link"
+            href="{{ '/registry/' | relative_url }}"
+          >
+            Registry
+          </a>
+
+
+          <div class="glc-ecosystem-dropdown">
+
+            <div class="glc-ecosystem-parent">
+
+              <a
+                class="glc-ecosystem-link glc-ecosystem-parent-link"
+                href="{{ '/tools/' | relative_url }}"
+              >
+                Tools
+              </a>
+
+              <button
+                class="glc-ecosystem-trigger"
+                type="button"
+                aria-label="Open Tools menu"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <svg
+                  viewBox="0 0 10 6"
+                  aria-hidden="true"
+                >
+                  <path d="M1 1l4 4 4-4"></path>
+                </svg>
+              </button>
+
+            </div>
+
+            <div class="glc-ecosystem-menu glc-tools-menu">
+
+              <a href="{{ '/tools/' | relative_url }}">
+                Tools overview
+              </a>
+
+              <a
+                href="https://tscnlab.github.io/glc-metadata-builder/"
+              >
+                Metadata builder
+              </a>
+
+              <a href="{{ '/validate/' | relative_url }}">
+                Validate a dataset
+              </a>
+
+              <a
+                href="https://tscnlab.github.io/glc-dp-r/"
+              >
+                GLC-dp
+              </a>
+
+              <a
+                href="https://tscnlab.github.io/LightLogR/"
+              >
+                LightLogR
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </nav>
