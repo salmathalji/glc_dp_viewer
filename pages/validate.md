@@ -30,7 +30,7 @@ You need:
 Review the required structure and fields in the
 [GLC Standard resource schemas]({{ '/schemas/' | relative_url }}). You can create
 or edit the metadata using the
-[GLC Metadata Builder](https://globallightcommons.github.io/glc-metadata-builder/) or
+[GLC Metadata Builder](https://builder.globallightcommons.org/) or
 prepare the files manually with a text editor.
 
 <div class="glc-note">

@@ -14,7 +14,7 @@ description: Open-source software supporting the Global Light Commons ecosystem
     <span class="tool-card-icon" aria-hidden="true"><i class="fa-solid fa-pen-to-square"></i></span>
     <h2>Metadata Builder</h2>
     <p>Create standardized GLC metadata packages through an interactive web interface.</p>
-    <a class="tool-card-link" href="https://globallightcommons.github.io/glc-metadata-builder/" target="_blank" rel="noopener noreferrer">Launch Builder <span aria-hidden="true">→</span></a>
+    <a class="tool-card-link" href="https://builder.globallightcommons.org/" target="_blank" rel="noopener noreferrer">Launch Builder <span aria-hidden="true">→</span></a>
   </article>
 
   <article class="tool-card">

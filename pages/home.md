@@ -44,7 +44,7 @@ users can distinguish current packages from legacy or unverified records.
 
 ## Related software
 
-- [GLC metadata builder](https://globallightcommons.github.io/glc-metadata-builder/)
+- [GLC metadata builder](https://builder.globallightcommons.org/)
 - [Validate a dataset]({{ '/validate/' | relative_url }}) — follow the complete workflow from package preparation to registry review.
 - [LightLogR](https://github.com/tscnlab/LightLogR)
 
